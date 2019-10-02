@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Galada&display=swap");
+
+body {
+  font-family: "Galada", cursive;
+  color: $color-white;
+}
+
+@mixin heading {
+  margin:0;
+  font-size: 3.81rem;
+}
+
+@mixin subtitle {
+  margin:0;
+}
+
+.t-heading {
+  @include heading;
+
+  &--inverted {
+    color: $color-black;
+  }
+}
+
+.t-subtitle {
+  @include subtitle;
+}
