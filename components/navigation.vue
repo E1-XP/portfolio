@@ -22,17 +22,38 @@ export default {};
 .navigation {
   position: absolute;
   bottom: $page-padding;
-  left: $page-padding;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include bp($bp-small) {
+    left: $page-padding;
+    transform: none;
+  }
 
   &__list {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17.37rem;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__item {
+    @include item-text;
+
+    grid-row: 1;
   }
 
   &__link {
     text-decoration: none;
+    display: inline-block;
+    transition: color 300ms ease-out;
+
+    &:hover {
+      color: rgba($color-white, 0.7);
+    }
   }
 }
 </style>

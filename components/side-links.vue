@@ -21,7 +21,7 @@ export default {};
 <style lang="scss">
 .side-links {
   position: absolute;
-  background-color: $color-black;
+  background-color: $color-dark-grey;
   right: 0;
   top: 50%;
   transform: translateY(-50%);

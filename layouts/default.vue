@@ -40,7 +40,7 @@ export default {
   background-image: url($main-bg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: 25%;
+  background-position-y: 52%;
   width: 100%;
   height: 100%;
 }

@@ -3,3 +3,30 @@
     @content;
   }
 }
+
+@mixin heading {
+  margin: 0;
+  font-size: 3.81rem;
+  font-weight: 300;
+  color: $color-white;
+}
+
+@mixin subtitle {
+  color: $color-white;
+  font-size: 1.62rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+@mixin paragraph {
+  color: $color-black;
+  font-size: 1.44rem;
+  text-indent: 4rem;
+  text-align: justify;
+  line-height: 1.8rem;
+}
+
+@mixin item-text {
+  color: $color-white;
+  font-size: 1.81rem;
+}

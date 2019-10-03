@@ -1,17 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Galada&display=swap");
 
+html {
+  // font-size: 75%; // 12px
+
+  // @include bp($bp-large) {
+  font-size: 87.5%; // 14px
+  // }
+
+  @include bp($bp-very-large) {
+    font-size: 100%; // 16px
+  }
+}
+
 body {
   font-family: "Galada", cursive;
+  font-weight: 300;
   color: $color-white;
-}
-
-@mixin heading {
-  margin:0;
-  font-size: 3.81rem;
-}
-
-@mixin subtitle {
-  margin:0;
 }
 
 .t-heading {
@@ -24,4 +28,12 @@ body {
 
 .t-subtitle {
   @include subtitle;
+}
+
+.t-paragraph {
+  @include paragraph;
+}
+
+.t-item-text {
+  @include item-text;
 }

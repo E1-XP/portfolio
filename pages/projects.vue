@@ -1,7 +1,15 @@
-<template></template>
+<template>
+  <BackgroundShape></BackgroundShape>
+</template>
 
 <script>
-export default {};
+import BackgroundShape from "./../components/background-shape";
+
+export default {
+  components: {
+    BackgroundShape
+  }
+};
 </script>
 
 <style>
