@@ -17,14 +17,34 @@ export default {
 </script>
 
 <style lang="scss">
+$max-fluid-font-size-mq: 26.35em;
+
 .header {
   &__logo {
     font-size: 2.62rem;
   }
 
   &__heading {
-    color: rgba($color-secondary, 70%);
-    mix-blend-mode: color-burn;
+    color: rgba($color-secondary, 80%);
+
+    @supports (background-clip: text) or (-webkit-background-clip: text) {
+      background: linear-gradient(
+        to bottom,
+        darken(rgba($color-secondary, 0.6), 25%) 19%,
+        rgba($color-secondary, 0.9) 52%,
+        lighten(rgba($color-secondary, 0.7), 10%) 80%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    text-align: center;
+    font-size: 13vw;
+
+    @include bp($max-fluid-font-size-mq) {
+      font-size: 3.81rem;
+    }
   }
 
   &__link {
@@ -32,9 +52,13 @@ export default {
   }
 
   &__subtitle {
-    font-size: 1.81rem;
+    font-size: 6.5vw;
     text-align: center;
     color: rgba($color-black, 0.85);
+
+    @include bp($max-fluid-font-size-mq) {
+      font-size: 1.81rem;
+    }
   }
 
   &__content {
@@ -42,6 +66,7 @@ export default {
     left: 50%;
     top: 40%;
     transform: translateX(-50%);
+    width: 100%;
   }
 }
 </style>
