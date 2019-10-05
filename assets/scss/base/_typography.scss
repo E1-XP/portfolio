@@ -7,7 +7,7 @@ html {
   font-size: 87.5%; // 14px
   // }
 
-  @include bp($bp-very-large) {
+  @include bp($bp-large) {
     font-size: 100%; // 16px
   }
 }

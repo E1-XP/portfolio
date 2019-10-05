@@ -38,6 +38,7 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     width: 85%;
+    max-width: 42.62rem;
     margin-top: calc(8.78rem - #{$page-padding});
   }
 

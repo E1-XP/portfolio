@@ -25,5 +25,10 @@ export default {};
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  display: none;
+
+  @include bp($bp-medium) {
+    display: block;
+  }
 }
 </style>
