@@ -1,0 +1,9 @@
+@function calcMobileSize(
+  $base-size,
+  $width-percentage: 0.1,
+  $height-percentage: 0.1
+) {
+  @return calc(
+    #{$base-size} + (100vw - 320px) * #{$width-percentage} + (100vh - 568px) * #{$height-percentage}
+  );
+}

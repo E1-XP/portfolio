@@ -20,10 +20,14 @@
 
 @mixin paragraph {
   color: $color-black;
-  font-size: 1.44rem;
+  font-size: calcMobileSize(1.2rem, 0.015, 0.013);
   text-indent: 4rem;
   text-align: justify;
   line-height: 1.8rem;
+
+  @include bp($bp-very-small) {
+    font-size: 1.44rem;
+  }
 }
 
 @mixin item-text {

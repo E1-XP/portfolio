@@ -1,6 +1,6 @@
 <template>
   <svg viewBox="0 0 1042 720">
-    <path ref="path" v-bind:d="paths[0]" />
+    <path ref="path" :d="paths[0]" />
   </svg>
 </template>
 
@@ -19,12 +19,27 @@ export default {
       "M 213.755 125.618 C 419.493 -74.845 971.017 -28.383 994.255 215.117 C 999.572 270.834 821.255 426.617 768.755 541.117 C 716.255 655.617 888.871 955.124 830.755 1049.12 C 695.465 1267.93 106.669 1095.05 59.255 1049.12 C -54.705 938.723 14.689 431.392 108.254 263.618 C 165.816 160.402 155.255 182.617 213.755 125.618 Z",
       "M 220.569 128.553 C 538.789 -121.459 1207.46 57.86 1093.03 128.553 C 978.597 199.247 842.73 298.302 818.03 451.861 C 793.329 605.421 853.802 745.5 910.365 852.335 C 1175.18 1352.5 26.118 1270.79 8.178 1057.5 C -9.822 843.5 1.551 450 45.678 336 C 89.806 222 149.03 184.759 220.569 128.553 Z"
     ],
-    BreakPoints: { smallBP: 700, mediumBP: 1000, largeBP: 1200 },
+    breakPoints: {
+      verySmallBP: 500,
+      smallBP: 700,
+      mediumBP: 1000,
+      largeBP: 1200
+    },
     usedMQ: undefined
   }),
+  computed: {
+    baseShapeTransformProps() {
+      return {
+        targets: this.$refs.path.parentElement,
+        delay: 160,
+        duration: 900,
+        easing: "easeOutSine"
+      };
+    }
+  },
   methods: {
     setUsedMQ() {
-      this.usedMQ = Object.values(this.BreakPoints)
+      this.usedMQ = Object.values(this.breakPoints)
         .reverse()
         .find(this.isWindowWiderThan);
     },
@@ -33,7 +48,7 @@ export default {
     setupAnimation() {
       const pathRef = this.$refs.path;
       const [_, path1] = this.paths;
-      const { smallBP, mediumBP, largeBP } = this.BreakPoints;
+      const { verySmallBP, smallBP, mediumBP, largeBP } = this.breakPoints;
 
       this.timeline.add({
         targets: pathRef,
@@ -47,81 +62,81 @@ export default {
           this.transformShapeForSmallMQ();
         } else if (this.isWindowNarrowerThan(largeBP)) {
           this.transformShapeForMediumMQ(true);
-        } else this.transformShapeForBigMQ();
+        } else this.transformShapeForLargeMQ();
 
         this.morphIntoFinalPath(true);
       } else {
-        this.transformShapeForVerySmallMQ();
+        if (this.isWindowWiderThan(verySmallBP)) {
+          this.transformShapeForVerySmallMQ();
+        } else this.transformShapeForMobileMQ();
       }
 
       this.setUsedMQ();
     },
-    transformShapeForVerySmallMQ() {
-      const pathRef = this.$refs.path;
 
-      anime({
-        targets: pathRef.parentElement,
-        translateX: "5%",
-        translateY: "142%",
-        scaleY: "1",
-        scale: "2.8",
-        rotate: "80deg",
-        delay: 160,
-        duration: 900,
-        easing: "easeOutSine"
-      });
+    transformShapeForMobileMQ() {
+      anime(
+        Object.assign({}, this.baseShapeTransformProps, {
+          translateX: "5%",
+          translateY:
+            "calc(84vw + (100vw - 320px) * 0.4 + (100vh - 568px) * 0.2)",
+          scaleY: "1",
+          scale: "2.8",
+          rotate: "80deg"
+        })
+      );
+    },
+    transformShapeForVerySmallMQ() {
+      anime(
+        Object.assign({}, this.baseShapeTransformProps, {
+          translateX: "5%",
+          translateY:
+            "calc(60vw + (100vw - 320px) * 0.4 + (100vh - 568px) * 0.2)",
+          scaleY: "1",
+          scale: "2.8",
+          rotate: "80deg"
+        })
+      );
     },
     transformShapeForSmallMQ() {
-      const pathRef = this.$refs.path;
-
-      anime({
-        targets: pathRef.parentElement,
-        translateY: "5%",
-        translateX: "2%",
-        scale: "1.125",
-        scaleY: "1.43",
-        rotate: "-4deg",
-        delay: 160,
-        duration: 900,
-        easing: "easeOutSine"
-      });
+      anime(
+        Object.assign({}, this.baseShapeTransformProps, {
+          translateY: "5%",
+          translateX: "2%",
+          scale: "1.125",
+          scaleY: "1.43",
+          rotate: "-4deg"
+        })
+      );
     },
-    transformShapeForBigMQ() {
-      const pathRef = this.$refs.path;
-
-      anime({
-        targets: pathRef.parentElement,
-        translateY: "-25%",
-        translateX: "0%",
-        scale: "1",
-        scaleY: "1",
-        rotate: "0deg",
-        delay: 160,
-        duration: 900,
-        easing: "easeOutSine"
-      });
+    transformShapeForLargeMQ() {
+      anime(
+        Object.assign({}, this.baseShapeTransformProps, {
+          translateY: "-25%",
+          translateX: "5.5%",
+          scale: "1",
+          scaleY: "1",
+          rotate: "0deg"
+        })
+      );
     },
     transformShapeForMediumMQ(onLoadMode = false) {
-      const pathRef = this.$refs.path;
-
-      anime({
-        targets: pathRef.parentElement,
-        translateY: onLoadMode
-          ? "-8%"
-          : [{ value: "2%", duration: 500 }, { value: "-8%", duration: 900 }],
-        translateX: "2%",
-        scale: "1",
-        scaleY: onLoadMode
-          ? "1.25"
-          : [
-              { value: "1.4", duration: 60, delay: 160 },
-              { value: "1.25", duration: 900 }
-            ],
-        rotate: "0deg",
-        delay: 160,
-        duration: 900,
-        easing: "easeOutSine"
-      });
+      anime(
+        Object.assign({}, this.baseShapeTransformProps, {
+          translateY: onLoadMode
+            ? "-8%"
+            : [{ value: "2%", duration: 500 }, { value: "-8%", duration: 900 }],
+          translateX: "-1.5%",
+          scale: "1",
+          scaleY: onLoadMode
+            ? "1.25"
+            : [
+                { value: "1.4", duration: 60, delay: 160 },
+                { value: "1.25", duration: 900 }
+              ],
+          rotate: "0deg"
+        })
+      );
     },
     morphIntoFinalPath(startMode = false) {
       const pathRef = this.$refs.path;
@@ -146,41 +161,47 @@ export default {
       });
     },
     checkWidthAndMorphOncePerMQ() {
-      const { smallBP, mediumBP, largeBP } = this.BreakPoints;
+      const { verySmallBP, smallBP, mediumBP, largeBP } = this.breakPoints;
 
+      const isAboveVerySmallBP = this.isWindowWiderThan(verySmallBP);
       const isAboveSmallBP = this.isWindowWiderThan(smallBP);
       const isAboveMediumBP = this.isWindowWiderThan(mediumBP);
       const isAboveLargeBP = this.isWindowWiderThan(largeBP);
       const MQNotEqualTo = bp => this.usedMQ !== bp;
 
-      const shouldMorphIntoFinal = !this.usedMQ && isAboveSmallBP;
-      const shouldMorphIntoPreFinal = !!this.usedMQ && !isAboveSmallBP;
+      const shouldMorphIntoFinal = () =>
+        (this.usedMQ === undefined || this.usedMQ < 700) && isAboveSmallBP;
+      const shouldMorphIntoPreFinal = () =>
+        this.usedMQ >= 700 && !isAboveSmallBP;
 
-      const shouldTransformToSmallBP =
-        MQNotEqualTo(smallBP) && isAboveSmallBP && !isAboveMediumBP;
-      const shouldTransformToMediumBP =
-        MQNotEqualTo(mediumBP) && isAboveMediumBP && !isAboveLargeBP;
-      const shouldTransformToLargeBP = MQNotEqualTo(largeBP) && isAboveLargeBP;
+      const shouldTransformFns = [
+        // mobile, vsmall, small, medium, large
+        () => this.usedMQ !== undefined && !isAboveVerySmallBP,
+        () =>
+          MQNotEqualTo(verySmallBP) && isAboveVerySmallBP && !isAboveSmallBP,
+        () => MQNotEqualTo(smallBP) && isAboveSmallBP && !isAboveMediumBP,
+        () => MQNotEqualTo(mediumBP) && isAboveMediumBP && !isAboveLargeBP,
+        () => MQNotEqualTo(largeBP) && isAboveLargeBP
+      ];
 
-      if (shouldMorphIntoFinal) {
-        this.morphIntoFinalPath();
-      } else if (shouldMorphIntoPreFinal) {
-        this.morphIntoPreFinalPath();
-        this.transformShapeForVerySmallMQ();
+      if (shouldMorphIntoFinal()) this.morphIntoFinalPath();
+      else if (shouldMorphIntoPreFinal()) this.morphIntoPreFinalPath();
 
-        this.setUsedMQ();
-      }
+      const formatKey = key =>
+        `${key[0].toUpperCase()}${key.substring(1, key.length - 2)}`;
 
-      if (shouldTransformToSmallBP) {
-        this.transformShapeForSmallMQ();
-        this.setUsedMQ();
-      } else if (shouldTransformToMediumBP) {
-        this.transformShapeForMediumMQ();
-        this.setUsedMQ();
-      } else if (shouldTransformToLargeBP) {
-        this.transformShapeForBigMQ();
-        this.setUsedMQ();
-      }
+      const BPs = ["Mobile", ...Object.keys(this.breakPoints).map(formatKey)];
+
+      shouldTransformFns.some((fn, idx) => {
+        const should = fn();
+
+        if (should) {
+          this[`transformShapeFor${BPs[idx]}MQ`]();
+          this.setUsedMQ();
+        }
+
+        return should;
+      });
     },
     onResize: throttle(function() {
       this.checkWidthAndMorphOncePerMQ();
