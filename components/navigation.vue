@@ -31,7 +31,10 @@ export default {
   computed: {
     styles() {
       return {
-        left: this.$route.path === "/" ? "2.5rem" : undefined
+        left:
+          //     this.$route.path === "/" && window.innerWidth > 1000
+          //       ? "2.5rem"
+          undefined
       };
     }
   }

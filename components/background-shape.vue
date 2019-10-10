@@ -12,7 +12,8 @@ export default {
   data: () => ({
     timeline: anime.timeline({
       loop: false,
-      easing: "linear"
+      easing: "linear",
+      delay: 160
     }),
     paths: [
       "M 41 0.5 C 41 0.5 41 0.5 41 0.5 C 41 0.5 68.5 -3 68.5 34.5 C 68.5 72 32.5 70 32.5 70 C 32.5 70 -2.963 70 0.5 34.5 C 1.654 22.667 6.539 14.945 12.539 9.908 C 18.539 4.871 25.654 2.519 31.27 1.426 C 36.885 0.333 41 0.5 41 0.5",
@@ -25,7 +26,7 @@ export default {
       mediumBP: 1000,
       largeBP: 1200
     },
-    usedMQ: undefined
+    usedMQ: undefined // to track previous width on resize
   }),
   computed: {
     baseShapeTransformProps() {
@@ -54,7 +55,7 @@ export default {
         targets: pathRef,
         d: [{ value: path1 }],
         delay: 160,
-        duration: 1000
+        duration: 600
       });
 
       if (this.isWindowWiderThan(smallBP)) {
@@ -73,7 +74,6 @@ export default {
 
       this.setUsedMQ();
     },
-
     transformShapeForMobileMQ() {
       anime(
         Object.assign({}, this.baseShapeTransformProps, {

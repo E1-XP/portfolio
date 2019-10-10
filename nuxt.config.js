@@ -1,3 +1,6 @@
+import env from "dotenv";
+env.config();
+
 export default {
   mode: "universal",
   /*
@@ -37,6 +40,7 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    "@nuxtjs/dotenv",
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     "@nuxtjs/style-resources"

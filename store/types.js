@@ -1,0 +1,2 @@
+export const GET_REPOSITORIES = "GET_REPOSITORIES";
+export const SET_PROJECTS = "SET_PROJECTS";

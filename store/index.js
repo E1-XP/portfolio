@@ -1,3 +1,7 @@
+import config from "@/config";
+
+import { GET_REPOSITORIES, SET_PROJECTS } from "./types";
+
 export const state = () => ({
   projects: [],
   stack: [
@@ -24,8 +28,46 @@ export const state = () => ({
   ]
 });
 
-export const mutations = () => ({});
+export const mutations = {
+  [SET_PROJECTS](state, payload) {
+    state.projects = payload;
+  }
+};
 
-export const actions = () => ({
-  getRepositories: () => {}
-});
+export const actions = {
+  async [GET_REPOSITORIES](ctx) {
+    const errorPayload = [{ name: `couldn't fetch repositories` }];
+    const hasAPIErrored = resp =>
+      !Array.isArray(resp) && Array.isArray(resp.errors);
+
+    try {
+      const { url: URL, token } = config.github;
+      const oauth = { Authorization: `bearer ${token}` };
+      const query = `
+        {
+          viewer {
+            repositories(last: 20) {
+              nodes {
+                name
+                url
+            }
+          }
+        }
+      }`;
+
+      const response = await this.$axios.$post(
+        URL,
+        { query },
+        { headers: oauth }
+      );
+
+      if (hasAPIErrored(response)) ctx.commit(SET_PROJECTS, errorPayload);
+      else {
+        const repos = response.data.viewer.repositories.nodes;
+        ctx.commit(SET_PROJECTS, repos);
+      }
+    } catch (err) {
+      ctx.commit(SET_PROJECTS, errorPayload);
+    }
+  }
+};

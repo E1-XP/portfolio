@@ -2,8 +2,8 @@
   <div class="l-container">
     <div class="main-background"></div>
     <nuxt class="l-page" />
-    <transition name="h-fade-anim" appear>
-      <nuxt-link to="/" v-show="shouldShowHomeBtn" class="navigation-link">
+    <transition name="h-fade-anim-delay" appear>
+      <nuxt-link to="/" v-if="shouldShowHomeBtn" class="navigation-link">
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -48,14 +48,17 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
     position: absolute;
     top: $computedMobilePosition;
     right: $computedMobilePosition;
-    transition: fill 300ms ease-out;
 
     @include bp($bp-very-small) {
       top: $page-padding;
       right: $page-padding;
     }
 
-    &:hover {
+    & svg {
+      transition: fill 300ms ease-out;
+    }
+
+    &:hover svg {
       fill: rgba($color-white, 0.7);
     }
 

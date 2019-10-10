@@ -49,6 +49,11 @@ $max-fluid-font-size-mq: 26.35em;
 
   &__link {
     display: table-caption;
+    transition: color 300ms ease-out;
+
+    &:hover {
+      color: rgba($color-white, 0.7);
+    }
   }
 
   &__subtitle {
