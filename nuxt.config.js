@@ -3,6 +3,9 @@ env.config();
 
 export default {
   mode: "universal",
+  env: {
+    GITHUB_KEY: process.env.GITHUB_KEY
+  },
   /*
    ** Headers of the page
    */
