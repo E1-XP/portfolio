@@ -30,7 +30,8 @@ export const state = () => ({
 
 export const mutations = {
   [SET_PROJECTS](state, payload) {
-    state.projects = payload;
+    const blackList = ["GTxM-back", "draw-test"];
+    state.projects = payload.filter(item => !blackList.includes(item.name));
   }
 };
 
@@ -46,7 +47,7 @@ export const actions = {
       const query = `
         {
           viewer {
-            repositories(last: 20) {
+            repositories(last: 20, privacy : PUBLIC) {
               nodes {
                 name
                 url

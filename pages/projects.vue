@@ -29,8 +29,8 @@ export default {
   computed: {
     ...mapState(["projects"])
   },
-  mounted() {
-    this.$store.dispatch(GET_REPOSITORIES);
+  async fetch({ store }) {
+    await store.dispatch(GET_REPOSITORIES);
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <svg viewBox="0 0 1042 720">
+  <svg class="background-shape" viewBox="0 0 1042 720">
     <path ref="path" :d="paths[0]" />
   </svg>
 </template>
@@ -218,7 +218,7 @@ export default {
 </script>
 
 <style lang="scss">
-svg {
+.background-shape {
   position: absolute;
   width: 100%;
   height: 100vh;
