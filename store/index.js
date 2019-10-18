@@ -4,6 +4,13 @@ import { GET_REPOSITORIES, SET_PROJECTS } from "./types";
 
 export const state = () => ({
   projects: [],
+  images: Array(8)
+    .fill(0)
+    .map((_, idx) =>
+      idx % 2
+        ? `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d84fecb4f73fd00085f3523/screenshot.png`
+        : `https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d84e89f0238530007bdc667/screenshot.png`
+    ),
   stack: [
     { name: "JavaScript", img: "./img/logo-javascript.svg" },
     { name: "TypeScript", img: "./img/typescript.svg" },

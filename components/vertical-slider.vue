@@ -5,21 +5,45 @@
         <h3 class="t-heading t-heading--inverted slider__heading">{{items[currentSlide].name}}</h3>
         <span class="slider__page-count">{{currentSlide + 1}} / {{items.length}}</span>
       </div>
-      <ul class="slider__list">
-        <li
-          v-for="(item,idx) in items"
-          :key="item.id"
-          :class="`slider__item ${getClassModifier(idx)}`"
+      <div class="slider__list-outer">
+        <transition-group
+          tag="ul"
+          name="h-slider-composition-anim"
+          :duration="360"
+          class="slider__list"
+          ref="sliderList"
         >
-          <img
-            :src="idx % 2 ? 'https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d84fecb4f73fd00085f3523/screenshot.png': 'https://353a23c500dde3b2ad58-c49fe7e7355d384845270f4a7a0a7aa1.ssl.cf2.rackcdn.com/5d84e89f0238530007bdc667/screenshot.png'"
-            alt
-          />
-        </li>
-      </ul>
+          <li :key="getPrevActiveIdx()" class="slider__item slider__item--prev-active">
+            <img :src="images[getPrevActiveIdx()]" alt="project screenshot" />
+          </li>
+          <li :key="currentSlide" class="slider__item slider__item--active">
+            <img :src="images[currentSlide]" alt="project screenshot" />
+          </li>
+          <li :key="getBackIdx()" class="slider__item slider__item--back">
+            <img :src="images[getBackIdx()]" alt="project screenshot" />
+          </li>
+          <li :key="getNextBackIdx()" class="slider__item slider__item--next-back">
+            <img :src="images[getNextBackIdx()]" alt="project screenshot" />
+          </li>
+        </transition-group>
+      </div>
       <div class="slider__controls">
-        <button @click="prevSlide" class="slider__button">prev</button>
-        <button @click="nextSlide" class="slider__button">next</button>
+        <button @click="prevSlide" class="slider__button">
+          <span class="slider__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0V0z" />
+              <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
+            </svg>
+          </span>
+        </button>
+        <button @click="nextSlide" class="slider__button">
+          <span class="slider__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path fill="none" d="M0 0h24v24H0V0z" />
+              <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+            </svg>
+          </span>
+        </button>
       </div>
     </div>
     <article class="slider__description">
@@ -27,7 +51,7 @@
         <span>Objectives:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia delectus odio provident laborum eum, neque commodi quae ut itaque, quidem minus. Fugit illum minus dolorum natus ducimus culpa porro eveniet!
       </p>
       <p class="t-paragraph">
-        <span>Tech highlights:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit incidunt fuga voluptates harum ab fugiat ipsa? Necessitatibus, nisi exercitationem.
+        <span>Tech highlights:</span> Lorem ipsum dolor sit amet incidunt fuga voluptates harum ab fugiat ipsa? Necessitatibus, nisi exercitationem.
       </p>
     </article>
   </div>
@@ -36,57 +60,68 @@
 <script>
 export default {
   props: {
-    items: { type: Array, required: true }
+    items: { type: Array, required: true },
+    images: { type: Array, required: true }
   },
   data: () => ({
-    currentSlide: 0,
-    isForwardDirection: true
+    currentSlide: 0
   }),
   methods: {
-    getClassModifier(idx) {
-      if (this.currentSlide === idx) return "slider__item--active";
-
-      const isOverLen = idx => idx > this.items.length - 1;
-      const backPos = isOverLen(this.currentSlide + 1)
-        ? 0
-        : this.currentSlide + 1;
-      if (idx === backPos) return "slider__item--back";
-
-      return "";
+    isOverLen(idx) {
+      return idx > this.items.length - 1;
     },
-    calcNextSlideIdx() {
-      return this.currentSlide + 1 > this.items.length - 1
-        ? 0
-        : this.currentSlide + 1;
+    getPrevActiveIdx() {
+      return this.getPrevSlideIdx();
     },
-    calcPrevSlideIdx() {
+    getBackIdx() {
+      return this.getNextSlideIdx();
+    },
+    getNextBackIdx() {
+      const backPos = this.getBackIdx();
+      return this.isOverLen(backPos + 1) ? 0 : backPos + 1;
+    },
+    getNextSlideIdx() {
+      return this.isOverLen(this.currentSlide + 1) ? 0 : this.currentSlide + 1;
+    },
+    getPrevSlideIdx() {
       return this.currentSlide - 1 < 0
         ? this.items.length - 1
         : this.currentSlide - 1;
     },
     nextSlide() {
-      this.isForwardDirection = true;
-
-      this.currentSlide = this.calcNextSlideIdx();
+      this.currentSlide = this.getNextSlideIdx();
     },
     prevSlide() {
-      this.isForwardDirection = false;
-
-      this.currentSlide = this.calcPrevSlideIdx();
+      this.currentSlide = this.getPrevSlideIdx();
     }
   }
 };
 </script>
 
 <style lang="scss">
+$easing: ease-in-out;
+$duration: 420ms;
+
+.h-slider-composition-anim {
+  &-enter-active,
+  &-leave-active,
+  &-move {
+    transition: transform $duration $easing;
+  }
+}
+
+.h-move-up-anim {
+  transform: translateY(-100%) !important;
+}
+
 .slider {
   width: 100%;
-  margin-top: 2rem;
 
   &__content {
     display: grid;
     grid-template-columns: 2fr 6fr 1fr;
     height: 25rem;
+    padding-top: 2rem;
     overflow: hidden;
   }
 
@@ -105,11 +140,14 @@ export default {
     display: block;
   }
 
+  &__list-outer {
+    position: relative;
+  }
+
   &__list {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: relative;
   }
 
   &__item {
@@ -119,12 +157,14 @@ export default {
     width: 90%;
     height: 0;
     padding-bottom: 55.25%;
-    display: none;
     overflow: hidden;
     box-shadow: 2px 13px 40px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     user-select: none;
     cursor: grab;
+    transition: transform $duration $easing;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 
     &::after {
       content: "";
@@ -134,20 +174,41 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
+      background-color: $color-dark-grey;
+      opacity: 0;
+      transition: opacity 600ms linear;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+    }
+
+    &--prev-active {
+      display: block;
+      transform: translateY(-140%) translateX(-3rem) translate3d(0, 0, 0);
+      transition: transform 500ms $easing;
+      z-index: 4;
     }
 
     &--active {
       display: block;
-      transform: translateX(-3rem);
+      transform: translateX(-3rem) translate3d(0, 0, 0);
       z-index: 2;
     }
 
     &--back {
       display: block;
-      transform: translateY(3rem);
+      transform: translateY(3rem) translate3d(0, 0, 0);
 
       &::after {
-        background-color: rgba($color-dark-grey, 0.99);
+        opacity: 0.99;
+      }
+    }
+
+    &--next-back {
+      transform: translateY(175%) translate3d(0, 0, 0);
+      z-index: -1;
+
+      &::after {
+        opacity: 0.99;
       }
     }
 
@@ -160,9 +221,25 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0.2rem 0.8rem;
   }
 
   &__button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__icon {
+    display: flex;
+    width: 100%;
+
+    svg {
+      fill: $color-white;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
