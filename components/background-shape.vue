@@ -205,7 +205,7 @@ export default {
     },
     onResize: throttle(function() {
       this.checkWidthAndMorphOncePerMQ();
-    }, 16)
+    }, 1000 / 60)
   },
   mounted() {
     this.setupAnimation();

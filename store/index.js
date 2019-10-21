@@ -1,3 +1,5 @@
+import omit from "lodash.omit";
+
 import config from "@/config";
 
 import { GET_REPOSITORIES, SET_PROJECTS } from "./types";
@@ -38,7 +40,10 @@ export const state = () => ({
 export const mutations = {
   [SET_PROJECTS](state, payload) {
     const blackList = ["GTxM-back", "draw-test"];
-    state.projects = payload.filter(item => !blackList.includes(item.name));
+
+    state.projects = payload
+      .filter(item => !blackList.includes(item.name))
+      .map(repo => ({ ...omit(repo), ...{ webpage: repo.homepageUrl } }));
   }
 };
 
@@ -57,7 +62,8 @@ export const actions = {
             repositories(last: 20, privacy : PUBLIC) {
               nodes {
                 name
-                url
+                url,
+                homepageUrl
             }
           }
         }
