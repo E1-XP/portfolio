@@ -7,7 +7,7 @@
         <p
           class="t-subtitle section-projects__subtitle"
         >Non-commercial projects to gain valuable knowledge</p>
-        <VerticalSlider :items="projects"></VerticalSlider>
+        <VerticalSlider :items="projects" :images="images"></VerticalSlider>
       </div>
     </transition>
   </section>
@@ -27,10 +27,10 @@ export default {
     VerticalSlider
   },
   computed: {
-    ...mapState(["projects"])
+    ...mapState(["projects", "images"])
   },
-  mounted() {
-    this.$store.dispatch(GET_REPOSITORIES);
+  async fetch({ store }) {
+    await store.dispatch(GET_REPOSITORIES);
   }
 };
 </script>

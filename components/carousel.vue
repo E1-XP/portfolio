@@ -11,7 +11,7 @@
   >
     <Slide v-for="item in items" :key="item.name" class="carousel__item">
       <figure class="stack-card">
-        <img :src="item.img" v-bind:alt="item.name" class="stack-card__icon" />
+        <img :src="item.img" :alt="item.name" class="stack-card__icon" />
         <figcaption class="stack-card__name">{{item.name}}</figcaption>
       </figure>
     </Slide>
