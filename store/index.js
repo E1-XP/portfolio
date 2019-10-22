@@ -7,8 +7,12 @@ import {
   GET_REPOSITORIES,
   GET_HEADER_CONTENT,
   SET_HEADER_CONTENT,
-  GET_ABOUT_TEXT,
-  SET_ABOUT_TEXT,
+  GET_ABOUT_CONTENT,
+  SET_ABOUT_CONTENT,
+  GET_PROJECTS_CONTENT,
+  SET_PROJECTS_CONTENT,
+  GET_CONTACT_CONTENT,
+  SET_CONTACT_CONTENT,
   SET_PROJECTS,
   SET_REPOSITORIES,
   GET_PROJECTS
@@ -20,7 +24,19 @@ export const state = () => ({
     heading: "",
     paragraph: ""
   },
-  aboutParagraph: "",
+  aboutData: {
+    heading: "",
+    subtitle: "",
+    aboutText: ""
+  },
+  projectsData: {
+    heading: "",
+    subtitle: ""
+  },
+  contactData: {
+    heading: "",
+    subtitle: ""
+  },
   projects: [],
   stack: [
     { name: "JavaScript", img: "./img/logo-javascript.svg" },
@@ -50,8 +66,14 @@ export const mutations = {
   [SET_HEADER_CONTENT](state, payload) {
     state.headerData = payload;
   },
-  [SET_ABOUT_TEXT](state, payload) {
-    state.aboutParagraph = payload;
+  [SET_ABOUT_CONTENT](state, payload) {
+    state.aboutData = payload;
+  },
+  [SET_PROJECTS_CONTENT](state, payload) {
+    state.projectsData = payload;
+  },
+  [SET_CONTACT_CONTENT](state, payload) {
+    state.contactData = payload;
   },
   [SET_PROJECTS](state, payload) {
     state.projects = state.projects.map(repo => {
@@ -81,21 +103,53 @@ export const mutations = {
 export const actions = {
   async [GET_HEADER_CONTENT](ctx) {
     const response = await client.getEntries({
-      content_type: "header"
+      content_type: "mainPage"
     });
 
     const headerData = response.items[0].fields;
 
     ctx.commit(SET_HEADER_CONTENT, headerData);
   },
-  async [GET_ABOUT_TEXT](ctx) {
+  async [GET_ABOUT_CONTENT](ctx) {
     const response = await client.getEntries({
-      content_type: "about"
+      content_type: "aboutPage"
     });
 
-    const data = response.items[0].fields.aboutText.content[0].content[0].value;
+    const data = Object.entries(response.items[0].fields).reduce(
+      (acc, [key, val]) => {
+        switch (key) {
+          case "aboutText": {
+            acc[key] = val.content[0].content[0].value;
+            return acc;
+          }
+          default: {
+            acc[key] = val;
+            return acc;
+          }
+        }
+      },
+      {}
+    );
 
-    ctx.commit(SET_ABOUT_TEXT, data);
+    ctx.commit(SET_ABOUT_CONTENT, data);
+  },
+  async [GET_PROJECTS_CONTENT](ctx) {
+    const response = await client.getEntries({
+      content_type: "projectsPage"
+    });
+
+    const data = response.items[0].fields;
+
+    ctx.commit(SET_PROJECTS_CONTENT, data);
+  },
+  async [GET_CONTACT_CONTENT](ctx) {
+    const response = await client.getEntries({
+      content_type: "contactPage"
+    });
+
+    const data = response.items[0].fields;
+
+    ctx.commit(SET_CONTACT_CONTENT, data);
   },
   async [GET_PROJECTS](ctx) {
     const expectedFields = [

@@ -5,7 +5,7 @@
     </h1>
     <div class="header__content">
       <h2 class="t-heading header__heading">{{headerData.heading}}</h2>
-      <p class="t-subtitle header__subtitle">{{headerData.paragraph}}</p>
+      <p class="t-subtitle header__subtitle">{{headerData.subtitle}}</p>
     </div>
   </header>
 </template>
