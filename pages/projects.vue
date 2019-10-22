@@ -7,7 +7,7 @@
         <p
           class="t-subtitle section-projects__subtitle"
         >Non-commercial projects to gain valuable knowledge</p>
-        <VerticalSlider :items="projects" :images="images"></VerticalSlider>
+        <VerticalSlider :items="projects"></VerticalSlider>
       </div>
     </transition>
   </section>
@@ -19,7 +19,7 @@ import { mapState } from "vuex";
 import BackgroundShape from "@/components/background-shape";
 import VerticalSlider from "@/components/vertical-slider";
 
-import { GET_REPOSITORIES } from "@/store/types";
+import { GET_REPOSITORIES, GET_PROJECTS } from "@/store/types";
 
 export default {
   components: {
@@ -27,10 +27,11 @@ export default {
     VerticalSlider
   },
   computed: {
-    ...mapState(["projects", "images"])
+    ...mapState(["projects"])
   },
   async fetch({ store }) {
     await store.dispatch(GET_REPOSITORIES);
+    await store.dispatch(GET_PROJECTS);
   }
 };
 </script>

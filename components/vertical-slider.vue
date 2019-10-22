@@ -30,17 +30,17 @@
           ref="sliderList"
         >
           <li :key="getPrevActiveIdx()" class="slider__item slider__item--prev-active">
-            <img :src="images[getPrevActiveIdx()]" alt="project screenshot" />
+            <img :src="items[getPrevActiveIdx()].img" alt="project screenshot" />
           </li>
           <li
             :style="activeSlideStyle"
             :key="currentSlide"
             class="slider__item slider__item--active"
           >
-            <img :src="images[currentSlide]" alt="project screenshot" />
+            <img :src="items[currentSlide].img" alt="project screenshot" />
           </li>
           <li :key="getBackIdx()" class="slider__item slider__item--back">
-            <img :src="images[getBackIdx()]" alt="project screenshot" />
+            <img :src="items[getBackIdx()].img" alt="project screenshot" />
             <ol class="slider__item-links">
               <li v-if="items[currentSlide].webpage" class="slider__item-link">
                 <a :href="items[currentSlide].webpage" class="slider__link">
@@ -73,7 +73,7 @@
             </ol>
           </li>
           <li :key="getNextBackIdx()" class="slider__item slider__item--next-back">
-            <img :src="images[getNextBackIdx()]" alt="project screenshot" />
+            <img :src="items[getNextBackIdx()].img" alt="project screenshot" />
           </li>
         </transition-group>
       </div>
@@ -98,10 +98,12 @@
     </div>
     <article class="slider__description">
       <p class="t-paragraph">
-        <span>Objectives:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia delectus odio provident laborum eum, neque commodi quae ut itaque, quidem minus. Fugit illum minus dolorum natus ducimus culpa porro eveniet!
+        <span class="slider__description-heading">Objectives:</span>
+        {{items[currentSlide].description}}
       </p>
       <p class="t-paragraph">
-        <span>Tech highlights:</span> Lorem ipsum dolor sit amet incidunt fuga voluptates harum nisi exercitationem.
+        <span class="slider__description-heading">Tech highlights:</span>
+        {{items[currentSlide].tech}}
       </p>
     </article>
   </div>
@@ -112,8 +114,7 @@ import throttle from "lodash.throttle";
 
 export default {
   props: {
-    items: { type: Array, required: true },
-    images: { type: Array, required: true }
+    items: { type: Array, required: true }
   },
   data: () => ({
     currentSlide: 0,

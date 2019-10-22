@@ -1,18 +1,28 @@
 <template>
   <header class="header">
     <h1 class="t-heading header__logo">
-      <nuxt-link class="header__link" to="/">Jan Kowalski</nuxt-link>
+      <nuxt-link class="header__link" to="/">{{headerData.logo}}</nuxt-link>
     </h1>
     <div class="header__content">
-      <h2 class="t-heading header__heading">Designed to Grow</h2>
-      <p class="t-subtitle header__subtitle">Aspiring JavaScript Developer</p>
+      <h2 class="t-heading header__heading">{{headerData.heading}}</h2>
+      <p class="t-subtitle header__subtitle">{{headerData.paragraph}}</p>
     </div>
   </header>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
+import { GET_HEADER_CONTENT } from "@/store/types";
+
 export default {
-  components: {}
+  components: {},
+  computed: {
+    ...mapState(["headerData"])
+  },
+  async fetch({ store }) {
+    await store.dispatch(GET_HEADER_CONTENT);
+  }
 };
 </script>
 
