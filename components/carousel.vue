@@ -19,7 +19,12 @@
 </template>
 
 <script>
-import { Slide, Carousel } from "vue-carousel";
+let Slide, Carousel;
+if (process.client) {
+  const vueCarousel = require("vue-carousel");
+  Slide - vueCarousel.Slide;
+  Carousel = vueCarousel.Carousel;
+}
 
 export default {
   components: {

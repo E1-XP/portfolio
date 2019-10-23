@@ -1,6 +1,8 @@
 <template>
   <section class="section-contact">
-    <BackgroundShape class="section-contact__background"></BackgroundShape>
+    <client-only>
+      <BackgroundShape class="section-contact__background"></BackgroundShape>
+    </client-only>
     <transition name="h-fade-anim" appear>
       <div class="section-contact__content">
         <h2 class="t-heading t-heading--inverted section-contact__heading">{{data.heading}}</h2>

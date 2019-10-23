@@ -1,6 +1,8 @@
 <template>
   <section class="section-about">
-    <BackgroundShape class="section-about__background"></BackgroundShape>
+    <client-only>
+      <BackgroundShape class="section-about__background"></BackgroundShape>
+    </client-only>
     <transition name="h-fade-anim" appear>
       <div class="section-about__content">
         <h2 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h2>

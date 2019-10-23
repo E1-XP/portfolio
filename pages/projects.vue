@@ -1,6 +1,8 @@
 <template>
   <section class="section-projects">
-    <BackgroundShape class="section-projects__background"></BackgroundShape>
+    <client-only>
+      <BackgroundShape class="section-projects__background"></BackgroundShape>
+    </client-only>
     <transition name="h-fade-anim" appear>
       <div class="section-projects__content">
         <h2 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h2>
@@ -41,7 +43,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .section-projects {
   background-color: rgba($color-white, 0.45);
 
