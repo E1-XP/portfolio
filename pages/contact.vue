@@ -5,6 +5,7 @@
       <div class="section-contact__content">
         <h2 class="t-heading t-heading--inverted section-contact__heading">{{data.heading}}</h2>
         <p class="t-subtitle section-contact__subtitle">{{data.subtitle}}</p>
+        <ContactForm class="section-contact__form"></ContactForm>
       </div>
     </transition>
   </section>
@@ -12,13 +13,16 @@
 
 <script>
 import { mapState } from "vuex";
+
 import BackgroundShape from "./../components/background-shape";
+import ContactForm from "@/components/contact-form";
 
 import { GET_CONTACT_CONTENT } from "@/store/types";
 
 export default {
   components: {
-    BackgroundShape
+    BackgroundShape,
+    ContactForm
   },
   computed: {
     ...mapState({ data: state => state.contactData })
@@ -76,6 +80,10 @@ export default {
 
   &__subtitle {
     text-align: center;
+  }
+
+  &__form {
+    padding-top: 2rem;
   }
 }
 </style>

@@ -19,7 +19,7 @@
 }
 
 @mixin paragraph {
-  color: $color-dark-grey;
+  color: $color-black;
   font-size: calcMobileSize(1.2rem, 0.015, 0.013);
   text-indent: 4rem;
   text-align: justify;
