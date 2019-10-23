@@ -3,11 +3,9 @@
     <BackgroundShape class="section-about__background"></BackgroundShape>
     <transition name="h-fade-anim" appear>
       <div class="section-about__content">
-        <h2 class="t-heading t-heading--inverted section-about__heading">About Me</h2>
-        <p class="t-subtitle section-about__subtitle">Get to know me better</p>
-        <p
-          class="t-paragraph"
-        >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h2>
+        <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
+        <p class="t-paragraph">{{data.aboutText}}.</p>
         <client-only>
           <Carousel class="section-about__slider" :items="stack"></Carousel>
         </client-only>
@@ -18,8 +16,11 @@
 
 <script>
 import { mapState } from "vuex";
-import BackgroundShape from "./../components/background-shape";
-import Carousel from "./../components/carousel.vue";
+
+import BackgroundShape from "@/components/background-shape";
+import Carousel from "@/components/carousel.vue";
+
+import { GET_ABOUT_CONTENT } from "@/store/types";
 
 export default {
   components: {
@@ -27,14 +28,16 @@ export default {
     Carousel
   },
   computed: {
+    ...mapState({ data: state => state.aboutData }),
     ...mapState(["stack"])
+  },
+  async fetch({ store }) {
+    await store.dispatch(GET_ABOUT_CONTENT);
   }
 };
 </script>
 
 <style lang="scss">
-$bp-shape-large: 84.37rem;
-
 .section-about {
   background-color: rgba($color-tertiary-alt, 0.5);
 

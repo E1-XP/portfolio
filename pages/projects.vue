@@ -3,11 +3,9 @@
     <BackgroundShape class="section-projects__background"></BackgroundShape>
     <transition name="h-fade-anim" appear>
       <div class="section-projects__content">
-        <h2 class="t-heading t-heading--inverted section-projects__heading">Personal Portfolio</h2>
-        <p
-          class="t-subtitle section-projects__subtitle"
-        >Non-commercial projects to gain valuable knowledge</p>
-        <VerticalSlider :items="projects" :images="images"></VerticalSlider>
+        <h2 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h2>
+        <p class="t-subtitle section-projects__subtitle">{{data.subtitle}}</p>
+        <VerticalSlider :items="projects"></VerticalSlider>
       </div>
     </transition>
   </section>
@@ -19,7 +17,11 @@ import { mapState } from "vuex";
 import BackgroundShape from "@/components/background-shape";
 import VerticalSlider from "@/components/vertical-slider";
 
-import { GET_REPOSITORIES } from "@/store/types";
+import {
+  GET_REPOSITORIES,
+  GET_PROJECTS,
+  GET_PROJECTS_CONTENT
+} from "@/store/types";
 
 export default {
   components: {
@@ -27,16 +29,18 @@ export default {
     VerticalSlider
   },
   computed: {
-    ...mapState(["projects", "images"])
+    ...mapState({ data: state => state.projectsData }),
+    ...mapState(["projects"])
   },
   async fetch({ store }) {
     await store.dispatch(GET_REPOSITORIES);
+    await store.dispatch(GET_PROJECTS);
+    await store.dispatch(GET_PROJECTS_CONTENT);
   }
 };
 </script>
 
 <style lang="scss">
-$bp-shape-large: 84.37rem;
 
 .section-projects {
   background-color: rgba($color-white, 0.45);
