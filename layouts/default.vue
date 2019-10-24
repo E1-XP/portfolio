@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import throttle from "lodash.throttle";
+
 import Navigation from "@/components/navigation";
 import SideLinks from "@/components/side-links";
 
@@ -30,6 +32,21 @@ export default {
     shouldShowHomeBtn() {
       return this.$route.path !== "/";
     }
+  },
+  methods: {
+    setVH: throttle(function() {
+      if (window.innerWidth > 500) return;
+
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    }, 1000 / 60)
+  },
+  mounted() {
+    this.setVH();
+    window.addEventListener("resize", this.setVH);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.setVH);
   }
 };
 </script>
@@ -54,8 +71,13 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
 .l-container {
   width: 100%;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   position: relative;
   overflow: hidden;
+
+  @include bp($bp-very-small) {
+    height: 100vh;
+  }
 
   & > .navigation-link {
     height: 3rem;
