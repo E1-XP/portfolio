@@ -79,7 +79,7 @@ $max-fluid-font-size-mq: 26.35em;
   &__content {
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 35%;
     transform: translateX(-50%);
     width: 100%;
   }

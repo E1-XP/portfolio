@@ -1,5 +1,5 @@
 <template>
-  <aside class="side-links">
+  <aside class="side-links" :class="{'h-hidden-on-mobile': $nuxt.$route.path !== '/'}">
     <ul class="side-links__list">
       <li class="side-links__item">
         <a href="https://github.com/E1-XP/" class="side-links__link">
@@ -73,13 +73,13 @@ export default {};
   position: absolute;
   background-color: $color-dark-grey;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%) translateX(100%);
+  top: 71%;
+  transform: translateY(-50%);
   border-radius: 7px 0 0 7px;
   transition: transform 300ms ease-in-out;
 
-  @include bp($bp-medium) {
-    transform: translateY(-50%) translateX(0);
+  @include bp($bp-small) {
+    top: 50%;
   }
 
   &__list {
@@ -125,6 +125,14 @@ export default {};
       height: 100%;
       width: 100%;
       padding: 0.3rem;
+    }
+  }
+
+  &.h-hidden-on-mobile {
+    transform: translateY(-50%) translateX(100%) !important;
+
+    @include bp($bp-small) {
+      transform: translateY(-50%) translateX(0) !important;
     }
   }
 }

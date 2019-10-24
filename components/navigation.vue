@@ -1,5 +1,5 @@
 <template>
-  <nav class="navigation" :style="styles">
+  <nav class="navigation" :class="{'h-to-left' : $nuxt.$route.path === '/'}">
     <ul class="navigation__list">
       <li class="navigation__item">
         <nuxt-link
@@ -27,18 +27,7 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    styles() {
-      return {
-        left:
-          //     this.$route.path === "/" && window.innerWidth > 1000
-          //       ? "2.5rem"
-          undefined
-      };
-    }
-  }
-};
+export default {};
 </script>
 
 <style lang="scss">
@@ -88,6 +77,12 @@ $bp-shape-large: 88.87em;
     &:hover,
     &--active {
       color: rgba($color-white, 0.7);
+    }
+  }
+
+  &.h-to-left {
+    @include bp($bp-small) {
+      left: 2.5rem;
     }
   }
 }
