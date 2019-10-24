@@ -5,6 +5,7 @@
       :class="{ 'is-submitted': isSubmitted }"
       name="contact"
       method="post"
+      action="/"
       @submit.prevent="onSubmit"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
@@ -97,15 +98,15 @@ export default {
         )
         .join("&");
     },
-    async handleSubmit() {
+    async handleSubmit(e) {
       const { formSubmitted } = this.$refs;
 
       const config = {
         header: { "Content-Type": "application/x-www-form-urlencoded" }
       };
-
       const data = { "form-name": "contact", ...this.fields };
-      await this.$axios.$post("/", this.encode(data), config);
+
+      await this.$axios.$post(e.target.action, this.encode(data), config);
 
       this.isSubmitted = true;
 
