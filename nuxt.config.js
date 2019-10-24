@@ -1,3 +1,7 @@
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const cleanCSS = require("clean-css");
+
 import env from "dotenv";
 env.config();
 
@@ -65,6 +69,36 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    postcss: {
+      plugins: {
+        "postcss-import": {},
+        "postcss-url": {},
+        "postcss-preset-env": this.preset,
+        cssnano: false,
+        "postcss-clean": {
+          level: 2
+        }
+      },
+      order: "presetEnvAndCssnanoLast",
+      preset: {
+        stage: 2
+      }
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserJSPlugin(),
+        new OptimizeCSSAssetsPlugin({
+          cssProcessor: cleanCSS
+        })
+      ],
+      splitChunks: {
+        chunks: "all",
+        automaticNameDelimiter: ".",
+        name: undefined,
+        cacheGroups: {}
+      }
+    }
   }
 };
