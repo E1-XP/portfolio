@@ -117,7 +117,7 @@ export default {
       );
     },
     onSubmit(e) {
-      this.handleSubmit();
+      this.handleSubmit(e);
     }
   }
 };
