@@ -52,8 +52,21 @@ export default {
     }
   }
 
+  &__content {
+    margin-top: calc(#{calcMobileSize(24vw, 0.4, 0.2)} - #{$page-padding});
+
+    @include bp($bp-very-small) {
+      margin-top: calc(8.78rem - #{$page-padding});
+    }
+  }
+
   &__heading {
     text-align: center;
+    font-size: 3.45rem;
+
+    @include bp($bp-very-small) {
+      font-size: 3.81rem;
+    }
   }
 
   &__subtitle {

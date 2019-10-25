@@ -162,7 +162,7 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
   background-position-y: 52%;
   background-position-x: 85%;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   animation: backgroundAnim 60s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite
     alternate;
   backface-visibility: hidden;

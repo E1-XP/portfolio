@@ -19,12 +19,8 @@
 </template>
 
 <script>
-let Slide, Carousel;
-if (process.client) {
-  const vueCarousel = require("vue-carousel");
-  Slide - vueCarousel.Slide;
-  Carousel = vueCarousel.Carousel;
-}
+import Carousel from "vue-carousel/src/Carousel.vue";
+import Slide from "vue-carousel/src/Slide.vue";
 
 export default {
   components: {

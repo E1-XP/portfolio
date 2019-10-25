@@ -108,7 +108,7 @@
     </article>
   </div>
 </template>
-
+ 
 <script>
 import throttle from "lodash.throttle";
 
@@ -203,7 +203,7 @@ export default {
   }
 };
 </script>
-
+ 
 <style lang="scss">
 $easing: ease;
 $duration: 420ms;
@@ -237,13 +237,19 @@ $duration: 420ms;
 
   &__content {
     display: grid;
-    grid-template-columns: 2fr 6fr 1fr;
-    height: 23rem;
-    padding-top: 2rem;
+    grid-template-columns: 1fr 4fr 0fr;
+    height: 18rem;
+    padding-top: 1rem;
     overflow: hidden;
 
+    @include bp($bp-very-small) {
+      height: 23rem;
+    }
+
     @include bp($bp-small) {
+      padding-top: 2rem;
       height: 25rem;
+      grid-template-columns: 2fr 6fr 1fr;
     }
   }
 
@@ -252,6 +258,10 @@ $duration: 420ms;
     grid-template-columns: 1fr 1fr;
     align-items: end;
     position: relative;
+
+    @include bp($bp-small) {
+      grid-template-columns: 1fr 0fr;
+    }
   }
 
   &__heading {
@@ -259,13 +269,29 @@ $duration: 420ms;
     transform: rotate(180deg) translateY(5px);
     position: absolute;
     user-select: none;
+    font-size: 2.57rem;
+    bottom: 2rem;
+
+    @include bp($bp-very-small) {
+      font-size: 3.1rem;
+    }
+
+    @include bp($bp-small) {
+      font-size: 3.1rem;
+      bottom: initial;
+    }
   }
 
   &__page-count {
     display: block;
     position: absolute;
-    right: 1.5rem;
     user-select: none;
+    left: 0.5rem;
+
+    @include bp($bp-small) {
+      right: 1.5rem;
+      left: initial;
+    }
   }
 
   &__list-outer {
@@ -376,10 +402,14 @@ $duration: 420ms;
   }
 
   &__controls {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     padding: 0.2rem 0.8rem;
+
+    @include bp($bp-small) {
+      display: flex;
+    }
   }
 
   &__button {
