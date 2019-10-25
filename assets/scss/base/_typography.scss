@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Galada&display=swap");
 
 html {
-  // font-size: 75%; // 12px
+  font-size: 75%; // 12px
 
-  // @include bp($bp-large) {
-  font-size: 87.5%; // 14px
-  // }
+  @include bp($bp-small) {
+    font-size: 87.5%; // 14px
+  }
 
   @include bp($bp-large) {
     font-size: 100%; // 16px

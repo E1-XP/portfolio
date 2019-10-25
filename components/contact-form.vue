@@ -151,8 +151,12 @@ export default {
 
   &__row {
     display: grid;
-    grid-gap: 3.9rem;
+    grid-gap: 1.3rem;
     position: relative;
+
+    @include bp($bp-small) {
+      grid-gap: 3.9rem;
+    }
 
     &:nth-of-type(3) {
       grid-template-columns: 3fr 1fr;
@@ -179,6 +183,7 @@ export default {
     border-radius: 7px;
     border: none;
     padding: 0.9rem;
+    width: 100%;
     border: 1px solid transparent;
 
     &.form__error {
@@ -195,6 +200,11 @@ export default {
     padding: 0.9rem;
     resize: none;
     border: 1px solid transparent;
+    height: calcMobileSize(17rem, 0.3, 0.3);
+
+    @include bp($bp-small) {
+      height: initial;
+    }
 
     &.form__error {
       border: 1px solid red;
@@ -203,8 +213,8 @@ export default {
 
   &__label {
     position: absolute;
-    top: -16px;
-    left: 5px;
+    top: -1.1rem;
+    left: 0.2rem;
   }
 
   &__button {

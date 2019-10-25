@@ -5,7 +5,7 @@
     </client-only>
     <transition name="h-fade-anim" appear>
       <div class="section-contact__content">
-        <h2 class="t-heading t-heading--inverted section-contact__heading">{{data.heading}}</h2>
+        <h1 class="t-heading t-heading--inverted section-contact__heading">{{data.heading}}</h1>
         <p class="t-subtitle section-contact__subtitle">{{data.subtitle}}</p>
         <ContactForm class="section-contact__form"></ContactForm>
       </div>
@@ -85,7 +85,7 @@ export default {
   }
 
   &__form {
-    padding-top: 2rem;
+    padding-top: 3rem;
   }
 }
 </style>

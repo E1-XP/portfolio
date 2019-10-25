@@ -5,7 +5,7 @@
     </client-only>
     <transition name="h-fade-anim" appear>
       <div class="section-about__content">
-        <h2 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h2>
+        <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
         <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
         <p class="t-paragraph">{{data.aboutText}}.</p>
         <client-only>

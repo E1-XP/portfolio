@@ -5,7 +5,7 @@
     </client-only>
     <transition name="h-fade-anim" appear>
       <div class="section-projects__content">
-        <h2 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h2>
+        <h1 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h1>
         <p class="t-subtitle section-projects__subtitle">{{data.subtitle}}</p>
         <VerticalSlider :items="projects"></VerticalSlider>
       </div>
