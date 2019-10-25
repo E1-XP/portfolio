@@ -4,10 +4,11 @@
       <BackgroundShape class="section-about__background"></BackgroundShape>
     </client-only>
     <transition name="h-fade-anim" appear>
-      <div class="section-about__content">
+      <div class="l-page-content section-about__content">
         <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
         <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
         <p class="t-paragraph">{{data.aboutText}}.</p>
+        <h2 class="t-heading-2 t-heading-2--inverted section-about__heading-2">{{'Tech Stack'}}</h2>
         <client-only>
           <Carousel class="section-about__slider" :items="stack"></Carousel>
         </client-only>
@@ -49,39 +50,13 @@ export default {
     }
   }
 
-  &__content {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 42.62rem;
-    margin-top: calc(#{calcMobileSize(18vw, 0.4, 0.2)} - #{$page-padding});
-    height: calcMobileSize(66.5vh, 0.1, 0.1);
-    display: flex;
-    flex-direction: column;
-
-    @include bp($bp-very-small) {
-      width: 70%;
-      margin-top: calc(8.78rem - #{$page-padding});
-      height: auto;
-    }
-
-    @include bp($bp-medium) {
-      width: 85%;
-      left: 45%;
-    }
-
-    @include bp($bp-large) {
-      left: 48%;
-    }
-
-    @include bp($bp-shape-large) {
-      left: calc(51% - (100vw - #{$bp-shape-large}) * 0.45);
-    }
-  }
-
   &__heading {
     text-align: center;
+  }
+
+  &__heading-2 {
+    text-align: center;
+    margin-top: auto;
   }
 
   &__subtitle {
@@ -90,8 +65,8 @@ export default {
 
   &__slider {
     width: 100%;
+    margin-top: 0.8rem;
     height: calcMobileSize(6rem, 0.08, 0.05);
-    margin-top: auto;
 
     @include bp($bp-very-small) {
       height: 7.5rem;

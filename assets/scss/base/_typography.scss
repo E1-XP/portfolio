@@ -26,6 +26,14 @@ body {
   }
 }
 
+.t-heading-2 {
+  @include heading-2;
+
+  &--inverted {
+    color: $color-black;
+  }
+}
+
 .t-subtitle {
   @include subtitle;
 }
