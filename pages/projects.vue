@@ -1,16 +1,19 @@
 <template>
-  <section class="section-projects">
-    <client-only>
-      <BackgroundShape class="section-projects__background"></BackgroundShape>
-    </client-only>
-    <transition name="h-fade-anim" appear>
-      <div class="l-page-content section-projects__content">
-        <h1 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h1>
-        <p class="t-subtitle section-projects__subtitle">{{data.subtitle}}</p>
-        <VerticalSlider :items="projects"></VerticalSlider>
-      </div>
-    </transition>
-  </section>
+  <main>
+    <section class="l-page section-projects">
+      <client-only>
+        <BackgroundShape class="section-projects__background"></BackgroundShape>
+      </client-only>
+      <transition name="h-fade-anim" appear>
+        <div class="l-page-content section-projects__content">
+          <h1 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h1>
+          <p class="t-subtitle section-projects__subtitle">{{data.subtitle}}</p>
+          <VerticalSlider :items="projects"></VerticalSlider>
+          <Navigation></Navigation>
+        </div>
+      </transition>
+    </section>
+  </main>
 </template>
 
 <script>
@@ -18,6 +21,7 @@ import { mapState } from "vuex";
 
 import BackgroundShape from "@/components/background-shape";
 import VerticalSlider from "@/components/vertical-slider";
+import Navigation from "@/components/navigation";
 
 import {
   GET_REPOSITORIES,
@@ -28,7 +32,8 @@ import {
 export default {
   components: {
     BackgroundShape,
-    VerticalSlider
+    VerticalSlider,
+    Navigation
   },
   computed: {
     ...mapState({ data: state => state.projectsData }),
@@ -53,7 +58,9 @@ export default {
   }
 
   &__content {
-    margin-top: calc(#{calcMobileSize(24vw, 0.4, 0.2)} - #{$page-padding});
+    margin-top: calc(
+      #{calcMobileSize(24vw, 0.05, 0.1)} - #{$page-padding-very-small}
+    );
 
     @include bp($bp-very-small) {
       margin-top: calc(8.78rem - #{$page-padding});
@@ -62,7 +69,7 @@ export default {
 
   &__heading {
     text-align: center;
-    font-size: 3.45rem;
+    font-size: 3.55rem;
 
     @include bp($bp-very-small) {
       font-size: 3.81rem;

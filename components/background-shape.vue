@@ -79,7 +79,7 @@ export default {
         Object.assign({}, this.baseShapeTransformProps, {
           translateX: "5%",
           translateY:
-            "calc(84vw + (100vw - 320px) * 0.4 + (100vh - 568px) * 0.2)",
+            "calc(86vw + (100vw - 320px) * 0.2 + (100vh - 568px) * 0.1)",
           scaleY: "1",
           scale: "2.8",
           rotate: "80deg"

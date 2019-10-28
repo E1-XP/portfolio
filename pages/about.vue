@@ -1,20 +1,23 @@
 <template>
-  <section class="section-about">
-    <client-only>
-      <BackgroundShape class="section-about__background"></BackgroundShape>
-    </client-only>
-    <transition name="h-fade-anim" appear>
-      <div class="l-page-content section-about__content">
-        <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
-        <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
-        <p class="t-paragraph">{{data.aboutText}}.</p>
-        <h2 class="t-heading-2 t-heading-2--inverted section-about__heading-2">{{'Tech Stack'}}</h2>
-        <client-only>
-          <Carousel class="section-about__slider" :items="stack"></Carousel>
-        </client-only>
-      </div>
-    </transition>
-  </section>
+  <main>
+    <section class="l-page section-about">
+      <client-only>
+        <BackgroundShape class="section-about__background"></BackgroundShape>
+      </client-only>
+      <transition name="h-fade-anim" appear>
+        <div class="l-page-content section-about__content">
+          <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
+          <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
+          <p class="t-paragraph">{{data.aboutText}}.</p>
+          <h2 class="t-heading-2 t-heading-2--inverted section-about__heading-2">{{'Tech Stack'}}</h2>
+          <client-only>
+            <Carousel class="section-about__slider" :items="stack"></Carousel>
+          </client-only>
+          <Navigation></Navigation>
+        </div>
+      </transition>
+    </section>
+  </main>
 </template>
 
 <script>
@@ -22,13 +25,15 @@ import { mapState } from "vuex";
 
 import BackgroundShape from "@/components/background-shape";
 import Carousel from "@/components/carousel.vue";
+import Navigation from "@/components/navigation";
 
 import { GET_ABOUT_CONTENT } from "@/store/types";
 
 export default {
   components: {
     BackgroundShape,
-    Carousel
+    Carousel,
+    Navigation
   },
   computed: {
     ...mapState({ data: state => state.aboutData }),

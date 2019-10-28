@@ -34,24 +34,9 @@ export default {};
 $bp-shape-large: 88.87em;
 
 .navigation {
-  position: absolute;
-  bottom: calcMobileSize(0.5rem, 0.05, 0.05);
-  left: 50%;
-  transform: translateX(-50%);
-
-  @include bp($bp-small) {
-    bottom: $page-padding;
-    left: 5.5rem;
-    transform: none;
-  }
-
-  @include bp($bp-medium) {
-    left: 9rem;
-  }
-
-  @include bp($bp-shape-large) {
-    left: 11rem;
-  }
+  margin: 0 auto;
+  margin-top: auto;
+  padding-top: 1rem;
 
   &__list {
     list-style-type: none;
@@ -81,6 +66,10 @@ $bp-shape-large: 88.87em;
   }
 
   &.h-to-left {
+    margin: initial;
+    margin-top: initial;
+    padding-top: initial;
+
     @include bp($bp-small) {
       left: 2.5rem;
     }

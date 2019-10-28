@@ -1,0 +1,64 @@
+.l-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  @include bp($bp-very-small) {
+    height: 100vh;
+  }
+}
+
+.l-page {
+  padding: $page-padding-very-small;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+
+  @include bp($bp-very-small) {
+    padding: $page-padding-small;
+  }
+
+  @include bp($bp-small) {
+    padding: $page-padding;
+  }
+}
+
+.l-page-content {
+  position: relative;
+  margin: 0 auto;
+  margin-top: calc(
+    #{calcMobileSize(15vw, 0.2, 0.1)} - #{$page-padding-very-small}
+  );
+  display: flex;
+  flex-direction: column;
+  min-height: calc(
+    (100vh - calc(#{calcMobileSize(15vw, 0.2, 0.1)})) - 2 * #{$page-padding-very-small}
+  );
+
+  @include bp($bp-very-small) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    margin-top: calc(8.78rem - #{$page-padding});
+    max-width: 42.62rem;
+    min-height: initial;
+  }
+
+  @include bp($bp-medium) {
+    width: 85%;
+    left: 45%;
+  }
+
+  @include bp($bp-large) {
+    left: 48%;
+  }
+
+  @include bp($bp-shape-large) {
+    left: calc(51% - (100vw - #{$bp-shape-large}) * 0.45);
+  }
+}

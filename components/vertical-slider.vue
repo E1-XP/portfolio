@@ -269,7 +269,7 @@ $duration: 420ms;
     transform: rotate(180deg) translateY(5px);
     position: absolute;
     user-select: none;
-    font-size: 2.57rem;
+    font-size: 2.49rem;
     bottom: 2rem;
 
     @include bp($bp-very-small) {
