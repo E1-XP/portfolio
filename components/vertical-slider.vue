@@ -296,6 +296,7 @@ $duration: 420ms;
 
   &__list-outer {
     position: relative;
+    touch-action: none;
   }
 
   &__list {

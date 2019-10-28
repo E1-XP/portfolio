@@ -12,6 +12,9 @@
         </span>
       </nuxt-link>
     </transition>
+    <transition name="h-fade-anim-delay" appear>
+      <Navigation :key="Date.now()" class="navigation navigation--global"></Navigation>
+    </transition>
     <SideLinks></SideLinks>
   </div>
 </template>
@@ -19,10 +22,12 @@
 <script>
 import throttle from "lodash.throttle";
 
+import Navigation from "@/components/navigation";
 import SideLinks from "@/components/side-links";
 
 export default {
   components: {
+    Navigation,
     SideLinks
   },
   computed: {
@@ -117,8 +122,8 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
   backface-visibility: hidden;
   transform: translate3D(0, 0, 0);
 
-// to fix bug with background image
-  @supports (-webkit-box-reflect:unset) {
+  // to fix bug with background image
+  @supports (-webkit-box-reflect: unset) {
     background-position-x: initial;
   }
 

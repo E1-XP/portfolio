@@ -15,7 +15,8 @@ import {
   SET_CONTACT_CONTENT,
   SET_PROJECTS,
   SET_REPOSITORIES,
-  GET_PROJECTS
+  GET_PROJECTS,
+  PRELOAD_PROJECT_IMGS
 } from "./types";
 
 export const state = () => ({
@@ -194,6 +195,12 @@ export const actions = {
     );
 
     ctx.commit(SET_PROJECTS, data.map(sanitize));
+  },
+  [PRELOAD_PROJECT_IMGS](ctx) {
+    ctx.state.projects.map(item => {
+      const img = new Image();
+      img.src = item.img;
+    });
   },
   async [GET_REPOSITORIES](ctx) {
     const errorPayload = [{ name: `couldn't fetch repositories` }];

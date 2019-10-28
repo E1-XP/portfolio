@@ -38,6 +38,36 @@ $bp-shape-large: 88.87em;
   margin-top: auto;
   padding-top: 1rem;
 
+  @include bp($bp-very-small) {
+    display: none;
+  }
+
+  &--global {
+    position: absolute;
+    bottom: $page-padding;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+
+    @include bp($bp-very-small) {
+      display: initial;
+    }
+
+    @include bp($bp-small) {
+      bottom: $page-padding;
+      left: 5.5rem;
+      transform: none;
+    }
+
+    @include bp($bp-medium) {
+      left: 9rem;
+    }
+
+    @include bp($bp-shape-large) {
+      left: 11rem;
+    }
+  }
+
   &__list {
     list-style-type: none;
     margin: 0;

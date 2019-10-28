@@ -1,14 +1,16 @@
 <template>
   <main>
-    <header class="l-page header">
-      <h1 class="t-heading header__logo">
-        <nuxt-link class="header__link" to="/">{{headerData.logo}}</nuxt-link>
-      </h1>
-      <div class="header__content">
-        <h2 class="t-heading header__heading">{{headerData.heading}}</h2>
-        <p class="t-subtitle header__subtitle">{{headerData.subtitle}}</p>
-      </div>
-    </header>
+    <transition name="h-fade-anim-delay" appear>
+      <header class="l-page header">
+        <h1 class="t-heading header__logo">
+          <nuxt-link class="header__link" to="/">{{headerData.logo}}</nuxt-link>
+        </h1>
+        <div class="header__content">
+          <h2 class="t-heading header__heading">{{headerData.heading}}</h2>
+          <p class="t-subtitle header__subtitle">{{headerData.subtitle}}</p>
+        </div>
+      </header>
+    </transition>
     <Navigation class="header__navigation"></Navigation>
   </main>
 </template>
@@ -96,20 +98,6 @@ $max-fluid-font-size-mq: 26.35em;
     bottom: $page-padding-very-small;
     left: 50%;
     transform: translateX(-50%);
-
-    @include bp($bp-small) {
-      bottom: $page-padding;
-      left: 5.5rem;
-      transform: none;
-    }
-
-    @include bp($bp-medium) {
-      left: 9rem;
-    }
-
-    @include bp($bp-shape-large) {
-      left: 11rem;
-    }
   }
 }
 </style>

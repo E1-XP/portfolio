@@ -26,7 +26,8 @@ import Navigation from "@/components/navigation";
 import {
   GET_REPOSITORIES,
   GET_PROJECTS,
-  GET_PROJECTS_CONTENT
+  GET_PROJECTS_CONTENT,
+  PRELOAD_PROJECT_IMGS
 } from "@/store/types";
 
 export default {
@@ -43,6 +44,9 @@ export default {
     await store.dispatch(GET_REPOSITORIES);
     await store.dispatch(GET_PROJECTS);
     await store.dispatch(GET_PROJECTS_CONTENT);
+  },
+  mounted() {
+    this.$store.dispatch(PRELOAD_PROJECT_IMGS);
   }
 };
 </script>
