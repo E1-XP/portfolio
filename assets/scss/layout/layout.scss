@@ -44,8 +44,17 @@
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
-    margin-top: calc(8.78rem - #{$page-padding});
     max-width: 42.62rem;
+    margin-top: calc(
+      #{calcMobileSize(0vw, 0.2, 0.1)} - #{$page-padding-very-small}
+    );
+    min-height: calc(
+      (100vh - calc(#{calcMobileSize(0vw, 0.2, 0.1)})) - 2 * #{$page-padding-very-small}
+    );
+  }
+
+  @include bp($bp-small) {
+    margin-top: calc(8.78rem - #{$page-padding});
     min-height: initial;
   }
 

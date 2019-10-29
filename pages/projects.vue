@@ -62,12 +62,12 @@ export default {
   }
 
   &__content {
-    margin-top: calc(
-      #{calcMobileSize(24vw, 0.05, 0.1)} - #{$page-padding-very-small}
+    padding-top: calc(
+      #{calcMobileSize(4vw, 0.05, 0.1)} - #{$page-padding-very-small}
     );
 
     @include bp($bp-very-small) {
-      margin-top: calc(8.78rem - #{$page-padding});
+      padding-top: calc(4rem - #{$page-padding});
     }
   }
 

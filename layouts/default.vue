@@ -1,5 +1,5 @@
 <template>
-  <div class="l-container" :class="{'l-handle-mobile-nav-height' : isOnMainPage}">
+  <div class="l-container">
     <div class="main-background"></div>
     <nuxt />
     <transition name="h-fade-anim-delay" appear>
@@ -13,7 +13,7 @@
       </nuxt-link>
     </transition>
     <transition name="h-fade-anim-delay" appear>
-      <Navigation :key="Date.now()" class="navigation navigation--global"></Navigation>
+      <Navigation :key="isOnMainPage" class="navigation navigation--global"></Navigation>
     </transition>
     <SideLinks></SideLinks>
   </div>
@@ -35,21 +35,6 @@ export default {
       return this.$route.path === "/";
     }
   },
-  methods: {
-    setVH: throttle(function() {
-      if (window.innerWidth > 500) return;
-
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    }, 1000 / 60)
-  },
-  mounted() {
-    this.setVH();
-    window.addEventListener("resize", this.setVH);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.setVH);
-  }
 };
 </script>
 
@@ -68,10 +53,6 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
   100% {
     transform: scale(1) translate(0%, 0%);
   }
-}
-
-.l-handle-mobile-nav-height {
-  height: calc(var(--vh, 1vh) * 100) !important;
 }
 
 .l-container {
@@ -125,6 +106,10 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
   // to fix bug with background image
   @supports (-webkit-box-reflect: unset) {
     background-position-x: initial;
+
+    @include bp($bp-small) {
+      background-position-x: 85%;
+    }
   }
 
   @include bp($bp-very-large) {

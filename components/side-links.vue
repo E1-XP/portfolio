@@ -1,5 +1,5 @@
 <template>
-  <aside class="side-links" :class="{'h-hidden-on-mobile': $nuxt.$route.path !== '/'}">
+  <aside class="side-links" :class="{'h-hidden-on-mobile': isNotOnMainPage}">
     <ul class="side-links__list">
       <li class="side-links__item">
         <a href="https://github.com/E1-XP/" class="side-links__link">
@@ -65,7 +65,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    isNotOnMainPage() {
+      return this.$nuxt.$route.path !== "/";
+    }
+  }
+};
 </script>
 
 <style lang="scss">

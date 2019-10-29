@@ -1,6 +1,6 @@
 <template>
   <main>
-    <transition name="h-fade-anim-delay" appear>
+    <transition name="h-fade-anim" appear>
       <header class="l-page header">
         <h1 class="t-heading header__logo">
           <nuxt-link class="header__link" to="/">{{headerData.logo}}</nuxt-link>
@@ -94,10 +94,14 @@ $max-fluid-font-size-mq: 26.35em;
   }
 
   &__navigation {
-    position: absolute;
+    position: fixed;
     bottom: $page-padding-very-small;
     left: 50%;
     transform: translateX(-50%);
+
+    @include bp($bp-very-small) {
+      position: absolute;
+    }
   }
 }
 </style>

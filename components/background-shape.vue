@@ -45,7 +45,7 @@ export default {
         .find(this.isWindowWiderThan);
     },
     isWindowNarrowerThan: size => window.innerWidth < size,
-    isWindowWiderThan: size => window.innerWidth > size,
+    isWindowWiderThan: size => window.innerWidth >= size,
     setupAnimation() {
       const pathRef = this.$refs.path;
       const [_, path1] = this.paths;
@@ -77,10 +77,10 @@ export default {
     transformShapeForMobileMQ() {
       anime(
         Object.assign({}, this.baseShapeTransformProps, {
-          translateX: "5%",
+          translateX: "16%",
           translateY:
-            "calc(86vw + (100vw - 320px) * 0.2 + (100vh - 568px) * 0.1)",
-          scaleY: "1",
+            "calc(100vw + (100vw - 320px) * 0.2 + (100vh - 568px) * 0.1)",
+          scaleY: "1.1",
           scale: "2.8",
           rotate: "80deg"
         })
@@ -91,7 +91,7 @@ export default {
         Object.assign({}, this.baseShapeTransformProps, {
           translateX: "5%",
           translateY:
-            "calc(60vw + (100vw - 320px) * 0.4 + (100vh - 568px) * 0.2)",
+            "calc(75vw + (100vw - 320px) * 0.2 + (100vh - 568px) * 0.1)",
           scaleY: "1",
           scale: "2.8",
           rotate: "80deg"
@@ -160,6 +160,22 @@ export default {
         duration: 1000
       });
     },
+    morphIntoStartingPath() {
+      const pathRef = this.$refs.path;
+      const [path0] = this.paths;
+
+      anime({
+        targets: pathRef,
+        d: [{ value: path0 }],
+        duration: 3500,
+        delay: 200,
+        translateX: "100%",
+        translateY: "100%",
+        scale: "1",
+        scaleY: "1",
+        rotate: "0deg"
+      });
+    },
     checkWidthAndMorphOncePerMQ() {
       const { verySmallBP, smallBP, mediumBP, largeBP } = this.breakPoints;
 
@@ -208,11 +224,12 @@ export default {
     }, 1000 / 60)
   },
   mounted() {
-    this.setupAnimation();
     window.addEventListener("resize", this.onResize);
+    setTimeout(this.setupAnimation, 200);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
+    this.morphIntoStartingPath();
   }
 };
 </script>

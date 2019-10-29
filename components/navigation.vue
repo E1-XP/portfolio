@@ -38,7 +38,7 @@ $bp-shape-large: 88.87em;
   margin-top: auto;
   padding-top: 1rem;
 
-  @include bp($bp-very-small) {
+  @include bp($bp-small) {
     display: none;
   }
 
@@ -49,11 +49,8 @@ $bp-shape-large: 88.87em;
     transform: translateX(-50%);
     display: none;
 
-    @include bp($bp-very-small) {
-      display: initial;
-    }
-
     @include bp($bp-small) {
+      display: block;
       bottom: $page-padding;
       left: 5.5rem;
       transform: none;

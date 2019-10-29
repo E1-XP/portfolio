@@ -197,7 +197,7 @@ export const actions = {
     ctx.commit(SET_PROJECTS, data.map(sanitize));
   },
   [PRELOAD_PROJECT_IMGS](ctx) {
-    ctx.state.projects.map(item => {
+    ctx.state.projects.forEach(item => {
       const img = new Image();
       img.src = item.img;
     });
