@@ -76,7 +76,7 @@ export default {
 
 <style lang="scss">
 .side-links {
-  position: absolute;
+  position: fixed;
   background-color: $color-dark-grey;
   right: 0;
   top: 71%;

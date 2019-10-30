@@ -1,5 +1,5 @@
 <template>
-  <nav class="navigation" :class="{'h-to-left' : $nuxt.$route.path === '/'}">
+  <nav class="navigation">
     <ul class="navigation__list">
       <li class="navigation__item">
         <nuxt-link
@@ -31,37 +31,47 @@ export default {};
 </script>
 
 <style lang="scss">
-$bp-shape-large: 88.87em;
-
 .navigation {
   margin: 0 auto;
   margin-top: auto;
   padding-top: 1rem;
 
-  @include bp($bp-small) {
-    display: none;
-  }
-
-  &--global {
-    position: absolute;
-    bottom: $page-padding;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-
+  &:not(&--global) {
     @include bp($bp-small) {
-      display: block;
-      bottom: $page-padding;
-      left: 5.5rem;
-      transform: none;
+      margin-left: calc(-3rem - (100vw - 700px) * 0.3);
     }
 
     @include bp($bp-medium) {
-      left: 9rem;
+      margin-left: calc(-5rem - (100vw - 1000px) * 0.5);
+      padding-top: 3rem;
+    }
+
+    @include bp($bp-large) {
+      margin-left: calc(-5rem - (100vw - 1200px) * 0.4);
     }
 
     @include bp($bp-shape-large) {
-      left: 11rem;
+      margin-left: calc(-5rem - (100vw - 1200px) * 0.32);
+    }
+
+    @include bp($bp-very-large) {
+      margin-left: calc(-10rem - (100vw - 1600px) * 0.05);
+    }
+  }
+
+  &--global {
+    position: fixed;
+    bottom: var(--page-padding);
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include bp($bp-very-small) {
+      position: absolute;
+    }
+
+    @include bp($bp-small) {
+      left: 2.5rem;
+      transform: none;
     }
   }
 
@@ -89,16 +99,6 @@ $bp-shape-large: 88.87em;
     &:hover,
     &--active {
       color: rgba($color-white, 0.7);
-    }
-  }
-
-  &.h-to-left {
-    margin: initial;
-    margin-top: initial;
-    padding-top: initial;
-
-    @include bp($bp-small) {
-      left: 2.5rem;
     }
   }
 }

@@ -12,16 +12,17 @@ $color-dark-grey: #111;
 $color-black: #000;
 
 // SIZES
-$page-padding: 2.5rem;
-$page-padding-small: 1.5rem;
-$page-padding-very-small: 1rem;
-
-$bp-shape-large: 84.37rem;
+// check base.scss for biggger screens
+:root {
+  --page-padding: 1rem;
+}
 
 // IMAGES
 $main-bg: "../static/img/markus-spiske-TiKZ7tzM4P8-unsplash.jpg";
 
 // BREAKPOINTS
+$bp-shape-large: 95em;
+
 $bp-very-large: 100em; // 1600px
 $bp-large: 75em; // 1200px
 $bp-medium: 62.5em; // 1000px;

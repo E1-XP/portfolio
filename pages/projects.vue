@@ -62,12 +62,14 @@ export default {
   }
 
   &__content {
-    padding-top: calc(
-      #{calcMobileSize(4vw, 0.05, 0.1)} - #{$page-padding-very-small}
-    );
+    padding-top: 1rem;
 
     @include bp($bp-very-small) {
-      padding-top: calc(4rem - #{$page-padding});
+      padding-top: 3rem;
+    }
+
+    @include bp($bp-small) {
+      padding-top: initial;
     }
   }
 

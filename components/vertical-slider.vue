@@ -400,6 +400,10 @@ $duration: 420ms;
   &__item-link {
     height: 100%;
     width: 2.5rem;
+
+    &:first-of-type {
+      transform: scale(1.3);
+    }
   }
 
   &__controls {

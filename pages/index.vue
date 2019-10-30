@@ -11,7 +11,7 @@
         </div>
       </header>
     </transition>
-    <Navigation class="header__navigation"></Navigation>
+    <Navigation class="navigation--global"></Navigation>
   </main>
 </template>
 
@@ -91,17 +91,6 @@ $max-fluid-font-size-mq: 26.35em;
     top: 35%;
     transform: translateX(-50%);
     width: 100%;
-  }
-
-  &__navigation {
-    position: fixed;
-    bottom: $page-padding-very-small;
-    left: 50%;
-    transform: translateX(-50%);
-
-    @include bp($bp-very-small) {
-      position: absolute;
-    }
   }
 }
 </style>

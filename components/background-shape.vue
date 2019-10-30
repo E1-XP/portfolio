@@ -241,6 +241,11 @@ export default {
   height: 100vh;
   max-width: 1455px;
   max-height: 69.5vw;
+  min-height: 70vw;
   overflow: visible !important;
+
+  @include bp($bp-very-large) {
+    min-height: 50vw;
+  }
 }
 </style>

@@ -12,9 +12,6 @@
         </span>
       </nuxt-link>
     </transition>
-    <transition name="h-fade-anim-delay" appear>
-      <Navigation :key="isOnMainPage" class="navigation navigation--global"></Navigation>
-    </transition>
     <SideLinks></SideLinks>
   </div>
 </template>
@@ -22,19 +19,17 @@
 <script>
 import throttle from "lodash.throttle";
 
-import Navigation from "@/components/navigation";
 import SideLinks from "@/components/side-links";
 
 export default {
   components: {
-    Navigation,
     SideLinks
   },
   computed: {
     isOnMainPage() {
       return this.$route.path === "/";
     }
-  },
+  }
 };
 </script>
 
@@ -64,8 +59,8 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
     right: $computedMobilePosition;
 
     @include bp($bp-very-small) {
-      top: $page-padding;
-      right: $page-padding;
+      top: var(--page-padding);
+      right: var(--page-padding);
     }
 
     &:hover svg {
@@ -98,6 +93,7 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
   left: 0;
   width: 100%;
   height: 100vh;
+  z-index: -1;
   animation: backgroundAnim 60s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite
     alternate;
   backface-visibility: hidden;
