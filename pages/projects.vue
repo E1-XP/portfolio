@@ -4,7 +4,7 @@
       <client-only>
         <BackgroundShape class="section-projects__background"></BackgroundShape>
       </client-only>
-      <transition name="h-fade-anim" appear>
+      <transition name="a-fade" appear>
         <div class="l-page-content section-projects__content">
           <h1 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-projects__subtitle">{{data.subtitle}}</p>

@@ -101,21 +101,21 @@ export default {
     transformShapeForSmallMQ() {
       anime(
         Object.assign({}, this.baseShapeTransformProps, {
-          translateY: "5%",
-          translateX: "2%",
-          scale: "1.125",
+          translateY: "4%",
+          translateX: "5%",
+          scale: "1.12",
           scaleY: "1.43",
-          rotate: "-4deg"
+          rotate: "-2deg"
         })
       );
     },
     transformShapeForLargeMQ() {
       anime(
         Object.assign({}, this.baseShapeTransformProps, {
-          translateY: "-25%",
+          translateY: "-24%",
           translateX: "5.5%",
           scale: "1",
-          scaleY: "1",
+          scaleY: "1.1",
           rotate: "0deg"
         })
       );
@@ -126,7 +126,7 @@ export default {
           translateY: onLoadMode
             ? "-8%"
             : [{ value: "2%", duration: 500 }, { value: "-8%", duration: 900 }],
-          translateX: "-1.5%",
+          translateX: "0.5%",
           scale: "1",
           scaleY: onLoadMode
             ? "1.25"
@@ -243,6 +243,9 @@ export default {
   max-height: 69.5vw;
   min-height: 70vw;
   overflow: visible !important;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform;
 
   @include bp($bp-very-large) {
     min-height: 50vw;

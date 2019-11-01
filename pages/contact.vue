@@ -4,7 +4,7 @@
       <client-only>
         <BackgroundShape class="section-contact__background"></BackgroundShape>
       </client-only>
-      <transition name="h-fade-anim" appear>
+      <transition name="a-fade" appear>
         <div class="l-page-content section-contact__content">
           <h1 class="t-heading t-heading--inverted section-contact__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-contact__subtitle">{{data.subtitle}}</p>

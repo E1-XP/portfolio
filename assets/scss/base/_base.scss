@@ -1,6 +1,4 @@
 body {
-  background-color: $color-white;
-
   @include bp($bp-very-small) {
     --page-padding: 1.5rem;
   }

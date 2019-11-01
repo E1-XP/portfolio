@@ -1,6 +1,6 @@
 <template>
   <main>
-    <transition name="h-fade-anim" appear>
+    <transition name="a-fade" appear>
       <header class="l-page header">
         <h1 class="t-heading header__logo">
           <nuxt-link class="header__link" to="/">{{headerData.logo}}</nuxt-link>
@@ -49,9 +49,9 @@ $max-fluid-font-size-mq: 26.35em;
     @supports (background-clip: text) or (-webkit-background-clip: text) {
       background: linear-gradient(
         to bottom,
-        darken(rgba($color-secondary, 0.6), 25%) 19%,
-        rgba($color-secondary, 0.9) 52%,
-        lighten(rgba($color-secondary, 0.7), 10%) 80%
+        darken(rgba($color-secondary, 0.6), 20%) 19%,
+        lighten(rgba($color-secondary, 0.9), 5%) 52%,
+        lighten(rgba($color-secondary, 0.7), 15%) 80%
       );
       background-clip: text;
       -webkit-background-clip: text;

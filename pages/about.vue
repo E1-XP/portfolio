@@ -4,12 +4,15 @@
       <client-only>
         <BackgroundShape class="section-about__background"></BackgroundShape>
       </client-only>
-      <transition name="h-fade-anim" appear>
+      <transition name="a-fade" appear>
         <div class="l-page-content section-about__content">
           <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
           <p class="t-paragraph">{{data.aboutText}}.</p>
-          <h2 class="t-heading-2 t-heading-2--inverted section-about__heading-2">{{'Tech Stack'}}</h2>
+          <h2
+            class="t-heading-2 t-heading-2--inverted section-about__heading-2"
+          >{{data.stackHeading}}</h2>
+          <p class="t-subtitle section-about__subtitle">{{data.stackSubtitle}}</p>
           <client-only>
             <Carousel class="section-about__slider" :items="stack"></Carousel>
           </client-only>

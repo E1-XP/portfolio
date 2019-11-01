@@ -2,7 +2,7 @@
   <div class="l-container">
     <div class="main-background"></div>
     <nuxt />
-    <transition name="h-fade-anim-delay" appear>
+    <transition name="a-fade-delay" appear>
       <nuxt-link to="/" v-if="!isOnMainPage" class="navigation-link">
         <span class="navigation-link__icon">
           <svg width="24" height="24" viewBox="0 0 24 24">
