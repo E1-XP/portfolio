@@ -23,10 +23,18 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
+        content:
+          "Personal portfolio of Sebastian Stypula - aspiring JavaScript Developer"
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com/",
+        crossorigin: "true"
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color

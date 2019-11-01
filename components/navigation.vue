@@ -38,12 +38,12 @@ export default {};
 
   &:not(&--global) {
     @include bp($bp-small) {
-      margin-left: calc(-3rem - (100vw - 700px) * 0.3);
+      margin-left: calc(-2rem - (100vw - 700px) * 0.3);
     }
 
     @include bp($bp-medium) {
       margin-left: calc(-5rem - (100vw - 1000px) * 0.5);
-      padding-top: 3rem;
+      padding-top: 2rem;
     }
 
     @include bp($bp-large) {
