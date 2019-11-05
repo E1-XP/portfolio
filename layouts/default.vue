@@ -1,5 +1,6 @@
 <template>
   <div class="l-container">
+    <div class="main-background main-background--lazy"></div>
     <div class="main-background"></div>
     <nuxt />
     <transition name="a-fade-delay" appear>
@@ -110,6 +111,10 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
 
   @include bp($bp-very-large) {
     background-position-x: initial;
+  }
+
+  &--lazy {
+    background-image: url($main-bg-thumb);
   }
 }
 </style>
