@@ -34,7 +34,6 @@ export default {};
 .navigation {
   margin: 0 auto;
   margin-top: auto;
-  padding-top: 1rem;
 
   &:not(&--global) {
     @include bp($bp-small) {
@@ -43,19 +42,14 @@ export default {};
 
     @include bp($bp-medium) {
       margin-left: calc(-5rem - (100vw - 1000px) * 0.5);
-      padding-top: 2rem;
     }
 
     @include bp($bp-large) {
-      margin-left: calc(-5rem - (100vw - 1200px) * 0.4);
-    }
-
-    @include bp($bp-shape-large) {
-      margin-left: calc(-5rem - (100vw - 1200px) * 0.32);
+      margin-left: calc(-5rem - (100vw - 1200px) * 0.05);
     }
 
     @include bp($bp-very-large) {
-      margin-left: calc(-10rem - (100vw - 1600px) * 0.05);
+      margin-left: calc(-10rem - (100vw - 1600px) * 0.01);
     }
   }
 

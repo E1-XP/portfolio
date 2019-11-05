@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Galada&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Galada|Josefin+Sans:600&display=swap");
 
 html {
   font-size: 75%; // 12px
@@ -8,6 +8,10 @@ html {
   }
 
   @include bp($bp-large) {
+    font-size: 93.75%; // 15px
+  }
+
+  @include bp($bp-very-large) {
     font-size: 100%; // 16px
   }
 }
@@ -40,6 +44,14 @@ body {
 
 .t-paragraph {
   @include paragraph;
+}
+
+.t-text {
+  @include text;
+
+  &--inverted {
+    color: $color-white;
+  }
 }
 
 .t-item-text {

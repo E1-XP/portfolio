@@ -26,15 +26,25 @@
 }
 
 @mixin paragraph {
+  font-family: "Josefin Sans", sans-serif;
   color: $color-black;
   font-size: calcMobileSize(1.2rem, 0.015, 0.013);
   text-indent: 4rem;
   text-align: justify;
   line-height: 1.8rem;
+  letter-spacing: -0.5px;
 
   @include bp($bp-very-small) {
     font-size: 1.44rem;
   }
+}
+
+@mixin text {
+  font-family: "Josefin Sans", sans-serif;
+  color: $color-black;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  letter-spacing: -0.5px;
 }
 
 @mixin item-text {

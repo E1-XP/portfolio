@@ -45,10 +45,14 @@
   @include bp($bp-medium) {
     margin-top: calc(6.78rem - #{var(--page-padding)});
     min-height: calc(100vh - 6.78rem - #{var(--page-padding)});
-    margin-left: calc(7% + (100vw - 1000px) * 0.4 + 3rem);
+    margin-left: calc(8% + (100vw - 1000px) * 0.4 + 2.8rem);
   }
 
-  @include bp($bp-shape-large) {
-    margin-left: calc(23% - (100vw - #{$bp-shape-large}) * 0.22);
+  @include bp($bp-large) {
+    margin-left: calc(6.2% - (100vw - 1000px) * 0.045 + 8rem);
+  }
+
+  @include bp($bp-very-large) {
+    margin-left: calc(23% - (100vw - #{$bp-shape-large}) * 0.27);
   }
 }

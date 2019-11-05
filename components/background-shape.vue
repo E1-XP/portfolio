@@ -46,7 +46,7 @@ export default {
     },
     isWindowNarrowerThan: size => window.innerWidth < size,
     isWindowWiderThan: size => window.innerWidth >= size,
-    setupAnimation() {
+    initializeAnimation() {
       const pathRef = this.$refs.path;
       const [_, path1] = this.paths;
       const { verySmallBP, smallBP, mediumBP, largeBP } = this.breakPoints;
@@ -115,7 +115,7 @@ export default {
           translateY: "-24%",
           translateX: "5.5%",
           scale: "1",
-          scaleY: "1.1",
+          scaleY: "1.2",
           rotate: "0deg"
         })
       );
@@ -163,17 +163,20 @@ export default {
     morphIntoStartingPath() {
       const pathRef = this.$refs.path;
       const [path0] = this.paths;
+      const { smallBP } = this.breakPoints;
+
+      const isMobile = this.isWindowNarrowerThan(smallBP);
 
       anime({
         targets: pathRef,
         d: [{ value: path0 }],
-        duration: 3500,
-        delay: 200,
-        translateX: "100%",
-        translateY: "100%",
-        scale: "1",
+        duration: 3000,
+        delay: 10,
+        translateX: isMobile ? "-50vw" : "-10%",
+        translateY: isMobile ? "90vh" : "10%",
+        scale: isMobile ? "1" : "1.4",
         scaleY: "1",
-        rotate: "0deg"
+        rotate: "-30deg"
       });
     },
     checkWidthAndMorphOncePerMQ() {
@@ -225,7 +228,7 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.onResize);
-    setTimeout(this.setupAnimation, 200);
+    setTimeout(this.initializeAnimation, 200);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
@@ -245,10 +248,17 @@ export default {
   overflow: visible !important;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  will-change: transform;
+  will-change: transform, opacity;
+
+  @include bp($bp-large) {
+    width: calc(75rem - (100vw - 1200px) * 0.1);
+    top: calc(5rem - (100vw - 1200px) * 0.25);
+  }
 
   @include bp($bp-very-large) {
     min-height: 50vw;
+    width: 100%;
+    top: 7rem;
   }
 }
 </style>
