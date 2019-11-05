@@ -88,7 +88,6 @@ export default {
           level: 2
         }
       },
-      order: "presetEnvAndCssnanoLast",
       preset: {
         stage: 2
       }

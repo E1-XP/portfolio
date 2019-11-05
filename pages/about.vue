@@ -5,10 +5,13 @@
         <BackgroundShape class="section-about__background"></BackgroundShape>
       </client-only>
       <transition name="a-fade" appear>
-        <div class="l-page-content section-about__content">
+        <div ref="content" class="l-page-content section-about__content">
           <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
-          <p class="t-paragraph">{{data.aboutText}}.</p>
+          <p class="t-paragraph">
+            <img class="section-about__image" :src="data.img" alt="portfolio owner" />
+            {{data.aboutText}}.
+          </p>
           <h2
             class="t-heading-2 t-heading-2--inverted section-about__heading-2"
           >{{data.stackHeading}}</h2>
@@ -44,6 +47,9 @@ export default {
   },
   async fetch({ store }) {
     await store.dispatch(GET_ABOUT_CONTENT);
+  },
+  beforeDestroy() {
+    this.$refs.content.classList.add("a-move-off-screen-scale");
   }
 };
 </script>
@@ -71,9 +77,19 @@ export default {
     text-align: center;
   }
 
+  &__image {
+    float: right;
+    height: 11rem;
+    border-radius: 8px;
+    border: 2px solid rgba($color-white, 0.2);
+    margin: 0 0 14px 14px;
+    pointer-events: none;
+  }
+
   &__slider {
     width: 100%;
     margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
     height: calcMobileSize(6rem, 0.08, 0.05);
 
     @include bp($bp-very-small) {

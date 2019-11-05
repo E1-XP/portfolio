@@ -5,7 +5,7 @@
         <BackgroundShape class="section-projects__background"></BackgroundShape>
       </client-only>
       <transition name="a-fade" appear>
-        <div class="l-page-content section-projects__content">
+        <div ref="content" class="l-page-content section-projects__content">
           <h1 class="t-heading t-heading--inverted section-projects__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-projects__subtitle">{{data.subtitle}}</p>
           <VerticalSlider :items="projects"></VerticalSlider>
@@ -47,6 +47,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch(PRELOAD_PROJECT_IMGS);
+  },
+  beforeDestroy() {
+    this.$refs.content.classList.add("a-move-off-screen-scale");
   }
 };
 </script>

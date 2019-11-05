@@ -1,11 +1,11 @@
 <template>
   <main>
-    <transition name="a-fade" appear>
+    <transition name="a-fade" appear @enter="onEnter">
       <header class="l-page header">
         <h1 class="t-heading header__logo">
           <nuxt-link class="header__link" to="/">{{headerData.logo}}</nuxt-link>
         </h1>
-        <div class="header__content">
+        <div :style="styles" class="header__content">
           <h2 class="t-heading header__heading">{{headerData.heading}}</h2>
           <p class="t-subtitle header__subtitle">{{headerData.subtitle}}</p>
         </div>
@@ -26,11 +26,27 @@ export default {
   components: {
     Navigation
   },
+  data: () => ({
+    shouldShow: false
+  }),
   computed: {
-    ...mapState(["headerData"])
+    ...mapState(["headerData"]),
+    styles() {
+      return {
+        opacity: this.shouldShow ? "1" : "0",
+        transform: this.shouldShow
+          ? `translateX(-50%) translateY(0vh)`
+          : undefined
+      };
+    }
   },
   async fetch({ store }) {
     await store.dispatch(GET_HEADER_CONTENT);
+  },
+  methods: {
+    onEnter() {
+      setTimeout(() => (this.shouldShow = true), 350);
+    }
   }
 };
 </script>
@@ -89,8 +105,11 @@ $max-fluid-font-size-mq: 26.35em;
     position: absolute;
     left: 50%;
     top: 35%;
-    transform: translateX(-50%);
+    transform: translateX(-60%) translateY(7vh);
     width: 100%;
+    transition: transform 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95),
+      opacity 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    opacity: 0;
   }
 }
 </style>

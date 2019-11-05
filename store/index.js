@@ -29,8 +29,8 @@ export const state = () => ({
     heading: "",
     subtitle: "",
     aboutText: "",
-    stackHeading:"",
-    stackSubtitle:"",
+    stackHeading: "",
+    stackSubtitle: ""
   },
   projectsData: {
     heading: "",
@@ -38,7 +38,8 @@ export const state = () => ({
   },
   contactData: {
     heading: "",
-    subtitle: ""
+    subtitle: "",
+    copyright: ""
   },
   projects: [],
   stack: [
@@ -121,6 +122,10 @@ export const actions = {
     const data = Object.entries(response.items[0].fields).reduce(
       (acc, [key, val]) => {
         switch (key) {
+          case "img": {
+            acc[key] = val.fields.file.url;
+            return acc;
+          }
           case "aboutText": {
             acc[key] = val.content[0].content[0].value;
             return acc;

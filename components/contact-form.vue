@@ -18,6 +18,7 @@
           @invalid="onInvalid"
           ref="topic"
           name="topic"
+          id="topic"
           v-model.trim="fields.topic"
           type="text"
           required
@@ -31,6 +32,7 @@
           @invalid="onInvalid"
           ref="content"
           name="content"
+          id="content"
           v-model="fields.content"
           cols="30"
           rows="10"
@@ -45,6 +47,7 @@
           @invalid="onInvalid"
           ref="email"
           name="email"
+          id="email"
           v-model.trim="fields.email"
           type="email"
           class="form__input"
@@ -176,8 +179,9 @@ export default {
   }
 
   &__input {
-    @include item-text;
+    @include text;
 
+    color: $color-white;
     display: block;
     background-color: rgba(0, 0, 0, 0.25);
     border-radius: 7px;
@@ -192,8 +196,9 @@ export default {
   }
 
   &__textarea {
-    @include item-text;
+    @include text;
 
+    color: $color-white;
     background-color: rgba(0, 0, 0, 0.25);
     border-radius: 7px;
     border: none;

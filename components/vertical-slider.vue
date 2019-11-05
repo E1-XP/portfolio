@@ -191,9 +191,11 @@ export default {
       }
     }, 1000 / 60),
     nextSlide() {
+      document.documentElement.style.setProperty("--sliderDescPosX", `-5px`);
       this.currentSlide = this.getNextSlideIdx();
     },
     prevSlide() {
+      document.documentElement.style.setProperty("--sliderDescPosX", `5px`);
       this.currentSlide = this.getPrevSlideIdx();
     }
   },
@@ -227,12 +229,12 @@ $duration: 420ms;
 .a-description {
   &-enter-active,
   &-leave-active {
-    transition: opacity 300ms ease-in, transform 200ms ease-in-out;
+    transition: opacity 350ms ease-in, transform 200ms ease-in-out;
   }
   &-enter,
   &-leave-to {
     opacity: 0;
-    transform: translateX(5px);
+    transform: translateX(var(--sliderDescPosX));
   }
 }
 

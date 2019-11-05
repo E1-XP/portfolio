@@ -1,13 +1,16 @@
 <template>
   <Carousel
     class="carousel"
-    :autoplay="true"
-    :autoplayTimeout="4000"
+    :autoplay="shouldPlayCarousel"
+    :autoplayTimeout="4500"
     :autoplayHoverPause="true"
     :perPage="4"
     :perPageCustom="[[700, 5]]"
     :loop="true"
     :paginationEnabled="false"
+    :style="styles"
+    @mousedown="onMouseDown"
+    @mouseup="onMouseUp"
   >
     <Slide v-for="item in items" :key="item.name" class="carousel__item">
       <figure class="stack-card">
@@ -29,6 +32,26 @@ export default {
   },
   props: {
     items: { type: Array, required: true }
+  },
+  data: () => ({
+    isMouseDown: false,
+    shouldPlayCarousel: false
+  }),
+  computed: {
+    styles() {
+      return { cursor: this.isMouseDown ? "grabbing" : undefined };
+    }
+  },
+  methods: {
+    onMouseDown() {
+      this.isMouseDown = true;
+    },
+    onMouseUp() {
+      this.isMouseDown = false;
+    }
+  },
+  mounted() {
+    setTimeout(() => (this.shouldPlayCarousel = true), 500);
   }
 };
 </script>
@@ -37,6 +60,7 @@ export default {
 .carousel {
   background-color: rgba($color-white, 0.25);
   border-radius: 8px;
+  cursor: grab;
 
   &__list {
     height: 100%;
@@ -67,8 +91,11 @@ export default {
   }
 
   &__name {
+    @include text;
+
     text-align: center;
-    color: $color-black;
+    font-size: 1.1rem;
+    padding-top: 0.5rem;
   }
 }
 
