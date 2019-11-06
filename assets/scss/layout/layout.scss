@@ -20,6 +20,9 @@
   margin-top: calc(#{calcMobileSize(15vw, 0.2, 0.1)} - #{var(--page-padding)});
   display: flex;
   flex-direction: column;
+  transform: translateZ(0) scale(0.95);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
   min-height: calc(
     (100vh - calc(#{calcMobileSize(15vw, 0.2, 0.1)})) - 2 * #{var(
         --page-padding

@@ -1,4 +1,6 @@
 body {
+  background-color: $color-primary-alt-2;
+
   @include bp($bp-very-small) {
     --page-padding: 1.5rem;
   }

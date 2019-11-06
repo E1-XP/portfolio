@@ -228,7 +228,8 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.onResize);
-    setTimeout(this.initializeAnimation, 200);
+
+    setTimeout(() => requestAnimationFrame(this.initializeAnimation), 200);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);

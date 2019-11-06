@@ -1,5 +1,5 @@
 <template>
-  <aside class="side-links" :class="{'h-hidden-on-mobile': isNotOnMainPage}">
+  <aside class="side-links" :key="Date.now()" :class="{'h-hidden-on-mobile': !isOnMainPage}">
     <ul class="side-links__list">
       <li class="side-links__item">
         <a href="https://github.com/E1-XP/" class="side-links__link">
@@ -66,9 +66,17 @@
 
 <script>
 export default {
+  data: () => ({
+    isOnMainPage: false
+  }),
   computed: {
-    isNotOnMainPage() {
-      return this.$nuxt.$route.path !== "/";
+    route() {
+      return this.$nuxt.$route.path;
+    }
+  },
+  watch: {
+    route() {
+      this.isOnMainPage = this.route === "/";
     }
   }
 };

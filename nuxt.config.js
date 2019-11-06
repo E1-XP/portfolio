@@ -16,7 +16,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: "portfolio",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -25,6 +25,11 @@ export default {
         name: "description",
         content:
           "Personal portfolio of Sebastian Stypula - aspiring JavaScript Developer"
+      },
+      {
+        name: "keywords",
+        content:
+          "Front-End, Front-end Developer, JavaScript, React, Vue, Sass, Node.js"
       }
     ],
     link: [
@@ -44,6 +49,14 @@ export default {
    ** Global CSS
    */
   css: ["@/assets/scss/main.scss"],
+  pwa: {
+    manifest: {
+      description:
+        "Personal portfolio of Sebastian Stypula - aspiring JavaScript Developer",
+      background_color: "#6ca29d",
+      theme_color: "#111111"
+    }
+  },
   /*
    ** Plugins to load before mounting the App
    */

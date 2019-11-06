@@ -4,7 +4,7 @@
       <client-only>
         <BackgroundShape class="section-about__background"></BackgroundShape>
       </client-only>
-      <transition name="a-fade" appear>
+      <transition name="a-fade" appear @enter="onEnter">
         <div ref="content" class="l-page-content section-about__content">
           <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
@@ -44,6 +44,16 @@ export default {
   computed: {
     ...mapState({ data: state => state.aboutData }),
     ...mapState(["stack"])
+  },
+  methods: {
+    onEnter() {
+      const { content } = this.$refs;
+
+      const scale = () =>
+        requestAnimationFrame(() => content.classList.add("a-scale-up"));
+
+      setTimeout(scale, 300);
+    }
   },
   async fetch({ store }) {
     await store.dispatch(GET_ABOUT_CONTENT);

@@ -115,6 +115,7 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
 
   &--lazy {
     background-image: url($main-bg-thumb);
+    animation: none;
   }
 }
 </style>

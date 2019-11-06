@@ -4,7 +4,7 @@
       <client-only>
         <BackgroundShape class="section-contact__background"></BackgroundShape>
       </client-only>
-      <transition name="a-fade" appear>
+      <transition name="a-fade" appear @enter="onEnter">
         <div ref="content" class="l-page-content section-contact__content">
           <h1 class="t-heading t-heading--inverted section-contact__heading">{{data.heading}}</h1>
           <p class="t-subtitle section-contact__subtitle">{{data.subtitle}}</p>
@@ -48,6 +48,16 @@ export default {
   computed: {
     ...mapState({ data: state => state.contactData })
   },
+  methods: {
+    onEnter() {
+      const { content } = this.$refs;
+
+      const scale = () =>
+        requestAnimationFrame(() => content.classList.add("a-scale-up"));
+
+      setTimeout(scale, 300);
+    }
+  },
   async fetch({ store }) {
     await store.dispatch(GET_CONTACT_CONTENT);
   },
@@ -87,7 +97,7 @@ export default {
 
   &__footer {
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 4rem;
 
     & p:last-of-type {
       display: flex;

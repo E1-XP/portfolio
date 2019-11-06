@@ -45,7 +45,8 @@ export default {
   },
   methods: {
     onEnter() {
-      setTimeout(() => (this.shouldShow = true), 350);
+      const show = () => requestAnimationFrame(() => (this.shouldShow = true));
+      setTimeout(show, 360);
     }
   }
 };
@@ -105,7 +106,7 @@ $max-fluid-font-size-mq: 26.35em;
     position: absolute;
     left: 50%;
     top: 35%;
-    transform: translateX(-60%) translateY(7vh);
+    transform: translateX(-55%) translateY(7vh);
     width: 100%;
     transition: transform 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95),
       opacity 1200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
