@@ -6,9 +6,13 @@
           <h3
             :key="currentSlide"
             class="t-heading t-heading--inverted slider__heading"
-          >{{items[currentSlide].name}}</h3>
+          >
+            {{ items[currentSlide].name }}
+          </h3>
         </transition>
-        <span class="slider__page-count">{{currentSlide + 1}} / {{items.length}}</span>
+        <span class="slider__page-count"
+          >{{ currentSlide + 1 }} / {{ items.length }}</span
+        >
       </div>
       <div
         class="slider__list-outer"
@@ -29,9 +33,18 @@
           :style="sliderListStyle"
           ref="sliderList"
         >
-          <li :key="getPrevActiveIdx()" class="slider__item slider__item--prev-active">
-            <img :src="items[getPrevActiveIdx()].img" alt="project screenshot" />
-            <ProjectLinks class="slider__item-links" :project="items[currentSlide]"></ProjectLinks>
+          <li
+            :key="getPrevActiveIdx()"
+            class="slider__item slider__item--prev-active"
+          >
+            <img
+              :src="items[getPrevActiveIdx()].img"
+              alt="project screenshot"
+            />
+            <ProjectLinks
+              class="slider__item-links"
+              :project="items[currentSlide]"
+            ></ProjectLinks>
           </li>
           <li
             :style="activeSlideStyle"
@@ -39,29 +52,45 @@
             class="slider__item slider__item--active"
           >
             <img :src="items[currentSlide].img" alt="project screenshot" />
-            <ProjectLinks class="slider__item-links" :project="items[currentSlide]"></ProjectLinks>
+            <ProjectLinks
+              class="slider__item-links"
+              :project="items[currentSlide]"
+            ></ProjectLinks>
           </li>
           <li :key="getBackIdx()" class="slider__item slider__item--back">
             <img :src="items[getBackIdx()].img" alt="project screenshot" />
-            <ProjectLinks class="slider__item-links" :project="items[currentSlide]"></ProjectLinks>
+            <ProjectLinks
+              class="slider__item-links"
+              :project="items[currentSlide]"
+            ></ProjectLinks>
           </li>
-          <li :key="getNextBackIdx()" class="slider__item slider__item--next-back">
+          <li
+            :key="getNextBackIdx()"
+            class="slider__item slider__item--next-back"
+          >
             <img :src="items[getNextBackIdx()].img" alt="project screenshot" />
-            <ProjectLinks class="slider__item-links" :project="items[currentSlide]"></ProjectLinks>
+            <ProjectLinks
+              class="slider__item-links"
+              :project="items[currentSlide]"
+            ></ProjectLinks>
           </li>
         </transition-group>
         <p
           ref="swipeInfo"
           class="slider__help-info"
-          :class="{'h-opacity-none' : wasDraggedBefore}"
-        >Swipe up / down to slide</p>
+          :class="{ 'h-opacity-none': wasDraggedBefore }"
+        >
+          Swipe up / down to slide
+        </p>
       </div>
       <div class="slider__controls">
         <button @click="nextSlide" class="slider__button">
           <span class="slider__icon">
             <svg width="24" height="24" viewBox="0 0 24 24">
               <path fill="none" d="M0 0h24v24H0V0z" />
-              <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
+              <path
+                d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
+              />
             </svg>
           </span>
         </button>
@@ -69,7 +98,9 @@
           <span class="slider__icon">
             <svg width="24" height="24" viewBox="0 0 24 24">
               <path fill="none" d="M0 0h24v24H0V0z" />
-              <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+              <path
+                d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"
+              />
             </svg>
           </span>
         </button>
@@ -79,17 +110,17 @@
       <article :key="currentSlide" class="slider__description">
         <p class="t-paragraph">
           <span class="slider__description-heading">Objectives:</span>
-          {{items[currentSlide].description}}
+          {{ items[currentSlide].description }}
         </p>
         <p class="t-paragraph">
           <span class="slider__description-heading">Tech highlights:</span>
-          {{items[currentSlide].tech}}
+          {{ items[currentSlide].tech }}
         </p>
       </article>
     </transition>
   </div>
 </template>
- 
+
 <script>
 import throttle from "lodash.throttle";
 
@@ -209,7 +240,7 @@ export default {
   }
 };
 </script>
- 
+
 <style lang="scss">
 $easing: ease;
 $duration: 420ms;
@@ -294,7 +325,7 @@ $duration: 420ms;
     transform: rotate(180deg) translateY(5px);
     position: absolute;
     user-select: none;
-    font-size: 2.49rem;
+    font-size: 2.4rem;
     bottom: 2rem;
 
     @include bp($bp-very-small) {
@@ -500,6 +531,13 @@ $duration: 420ms;
       width: 100%;
       height: 100%;
     }
+  }
+
+  &__description {
+  }
+
+  &__description-heading {
+    color: white;
   }
 }
 </style>
