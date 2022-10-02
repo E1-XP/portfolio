@@ -35,11 +35,11 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.2.3",
     "jest": "^24.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-clean": "^1.1.0",
     "prettier": "^1.18.2",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "10.0",
     "terser-webpack-plugin": "^2.2.1",
     "vue-jest": "^4.0.0-0"
   }
