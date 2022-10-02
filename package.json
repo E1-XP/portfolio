@@ -12,11 +12,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.0-0",
     "animejs": "^3.1.0",
-    "contentful": "^7.10.0",
+    "contentful": "^9.2.5",
     "lodash.omit": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "normalize-scss": "^7.0.1",
