@@ -6,21 +6,24 @@
           to="/about"
           class="navigation__link"
           active-class="navigation__link--active"
-        >About</nuxt-link>
+          >About</nuxt-link
+        >
       </li>
       <li class="navigation__item">
         <nuxt-link
           to="/projects"
           class="navigation__link"
           active-class="navigation__link--active"
-        >Projects</nuxt-link>
+          >Work</nuxt-link
+        >
       </li>
       <li class="navigation__item">
         <nuxt-link
           to="/contact"
           class="navigation__link"
           active-class="navigation__link--active"
-        >Contact</nuxt-link>
+          >Contact</nuxt-link
+        >
       </li>
     </ul>
   </nav>

@@ -6,16 +6,26 @@
       </client-only>
       <transition name="a-fade" appear @enter="onEnter">
         <div ref="content" class="l-page-content section-about__content">
-          <h1 class="t-heading t-heading--inverted section-about__heading">{{data.heading}}</h1>
-          <p class="t-subtitle section-about__subtitle">{{data.subtitle}}</p>
+          <h1 class="t-heading t-heading--inverted section-about__heading">
+            {{ data.heading }}
+          </h1>
+          <p class="t-subtitle section-about__subtitle">{{ data.subtitle }}</p>
           <p class="t-paragraph">
-            <img class="section-about__image" :src="data.img" alt="portfolio owner" />
-            {{data.aboutText}}.
+            <img
+              class="section-about__image"
+              :src="data.img"
+              alt="portfolio owner"
+            />
+            {{ data.aboutText }}
           </p>
           <h2
             class="t-heading-2 t-heading-2--inverted section-about__heading-2"
-          >{{data.stackHeading}}</h2>
-          <p class="t-subtitle section-about__subtitle">{{data.stackSubtitle}}</p>
+          >
+            {{ data.stackHeading }}
+          </h2>
+          <p class="t-subtitle section-about__subtitle">
+            {{ data.stackSubtitle }}
+          </p>
           <client-only>
             <Carousel class="section-about__slider" :items="stack"></Carousel>
           </client-only>
