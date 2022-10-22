@@ -95,12 +95,17 @@ export const mutations = {
   [SET_REPOSITORIES](state, payload) {
     const blackList = ["GTxM-back", "draw-test"];
 
-    state.projects = payload
+    const unsorted = payload
       .filter(item => !blackList.includes(item.name))
       .map(repo => ({
         ...omit(repo),
         ...{ webpage: repo.homepageUrl }
       }));
+
+    const u = unsorted;
+    const sorted = [u[2], u[1], u[3], u[4], u[0], u[8], u[5], u[6], u[7], u[9]];
+
+    state.projects = sorted;
   }
 };
 
