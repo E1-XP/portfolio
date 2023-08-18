@@ -103,7 +103,7 @@ export const mutations = {
       }));
 
     const u = unsorted;
-    const sorted = [u[2], u[1], u[3], u[4], u[0], u[8], u[5], u[6], u[13], u[7], u[9]];
+    const sorted = [u[2], u[1], u[3], u[4], u[0], u[8], u[5], u[6], u[13], u[14], u[7], u[9]];
 
     state.projects = sorted;
   }
