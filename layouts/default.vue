@@ -100,15 +100,6 @@ $computedMobilePosition: calcMobileSize(0.5rem, 0.05, 0.05);
   backface-visibility: hidden;
   transform: translate3D(0, 0, 0);
 
-  // to fix bug with background image
-  @supports (-webkit-box-reflect: unset) {
-    background-position-x: initial;
-
-    @include bp($bp-small) {
-      background-position-x: 85%;
-    }
-  }
-
   @include bp($bp-very-large) {
     background-position-x: initial;
   }
