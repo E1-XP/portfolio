@@ -1,5 +1,5 @@
 <template>
-  <aside class="side-links" :key="Date.now()" :class="{'h-hidden-on-mobile': !isOnMainPage}">
+  <aside class="side-links" :class="{'h-hidden-on-mobile': !isOnMainPage}">
     <ul class="side-links__list">
       <li class="side-links__item">
         <a href="https://github.com/E1-XP/" class="side-links__link">
