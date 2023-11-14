@@ -66,19 +66,11 @@
 
 <script>
 export default {
-  data: () => ({
-    isOnMainPage: false
-  }),
   computed: {
-    route() {
-      return this.$nuxt.$route.path;
+    isOnMainPage() {
+      return this.$route.path === "/";
     }
   },
-  watch: {
-    route() {
-      this.isOnMainPage = this.route === "/";
-    }
-  }
 };
 </script>
 

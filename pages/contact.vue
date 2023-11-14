@@ -12,7 +12,7 @@
           <footer class="section-contact__footer">
             <p
               class="t-text section-contact__copyright"
-            >&copy; 2017 - {{new Date().getFullYear()}} {{data.copyright}}</p>
+            >&copy; {{new Date().getFullYear()}} {{data.copyright}}</p>
             <p class="t-text section-contact__copyright">
               <span class="icon">
                 <img src="/img/photo.png" alt />
