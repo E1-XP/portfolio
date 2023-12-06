@@ -109,7 +109,7 @@
     <transition name="a-description" mode="out-in">
       <article :key="currentSlide" class="slider__description">
         <p class="t-paragraph">
-          <span class="slider__description-heading">Objectives:</span>
+          <span class="slider__description-heading">Description:</span>
           {{ items[currentSlide].description }}
         </p>
         <p class="t-paragraph">
