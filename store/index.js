@@ -93,7 +93,7 @@ export const mutations = {
     });
   },
   [SET_REPOSITORIES](state, payload) {
-    const blackList = ["GTxM-back", "draw-test"];
+    const blackList = ["E1-XP", "GTxM-back", "draw-test"];
 
     const unsorted = payload
       .filter(item => !blackList.includes(item.name))
