@@ -93,17 +93,14 @@ export const mutations = {
     });
   },
   [SET_REPOSITORIES](state, payload) {
-    const blackList = ["E1-XP", "GTxM-back", "draw-test"];
-
     const unsorted = payload
-      .filter(item => !blackList.includes(item.name))
       .map(repo => ({
         ...omit(repo),
         ...{ webpage: repo.homepageUrl }
       }));
 
     const u = unsorted;
-    const sorted = [u[15], u[2], u[1], u[3], u[4], u[0], u[8], u[5], u[6], u[13], u[14], u[7], u[9]];
+    const sorted = [u[16], u[3], u[2], u[4], u[5], u[0], u[10], u[7], u[8], u[14],  u[15], u[11], u[9]];
 
     state.projects = sorted;
   }
