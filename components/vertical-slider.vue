@@ -113,7 +113,7 @@
           {{ items[currentSlide].description }}
         </p>
         <p class="t-paragraph">
-          <span class="slider__description-heading">Technologies::</span>
+          <span class="slider__description-heading">Technologies:</span>
           {{ items[currentSlide].tech }}
         </p>
       </article>
